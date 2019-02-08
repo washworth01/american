@@ -28,32 +28,52 @@ public class AmericanFootballSpringBootModelPlayer implements Serializable
 	@Column (name = "player_username") private String playerUsername;
 		
 	@NotBlank
+	@Column 
+	private String role;
+	
+	@NotBlank
 	@Column (name = "prefered_position") private String position;
+	
 	
 	public AmericanFootballSpringBootModelPlayer()
 	{
 		
 	}
 		
-	public AmericanFootballSpringBootModelPlayer(String playerUsername, String position)
+	public AmericanFootballSpringBootModelPlayer(String playerUsername, String role, String position)
 	{
 		this.playerUsername = playerUsername;
+		this.role = role;
 		this.position = position;
 	}
 
-	public String getPlayerUsername() {
+	public String getPlayerUsername()
+	{
 		return playerUsername;
 	}
 
-	public void setPlayerUsername(String player_username) {
+	public void setPlayerUsername(String player_username)
+	{
 		this.playerUsername = player_username;
 	}
 
-	public String getPosition() {
+	public String getRole() 
+	{
+		return role;
+	}
+
+	public void setRole(String role) 
+	{
+		this.role = role;
+	}
+	
+	public String getPosition() 
+	{
 		return position;
 	}
 
-	public void setPosition(String position) {
+	public void setPosition(String position) 
+	{
 		this.position = position;
 	}
 		

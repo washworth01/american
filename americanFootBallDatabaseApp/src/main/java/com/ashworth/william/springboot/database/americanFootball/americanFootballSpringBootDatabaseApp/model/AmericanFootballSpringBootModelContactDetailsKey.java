@@ -1,14 +1,15 @@
 package com.ashworth.william.springboot.database.americanFootball.americanFootballSpringBootDatabaseApp.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
-@Embeddable
-public class AmericanFootballSpringBootModelContactDetailsKey
+public class AmericanFootballSpringBootModelContactDetailsKey implements Serializable
 {
-	@Column (name = "postcode", nullable = false) private String postcode;
 	
-	@Column (name = "house_number", nullable = false) private int houseNumber;
+	private String postcode;
+	private int houseNumber;
 
 	public String getPostcode() 
 	{

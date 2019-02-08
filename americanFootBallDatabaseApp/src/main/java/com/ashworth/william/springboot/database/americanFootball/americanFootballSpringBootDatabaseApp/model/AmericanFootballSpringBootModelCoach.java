@@ -25,10 +25,12 @@ public class AmericanFootballSpringBootModelCoach implements Serializable
 {
 	@Id
 	@OneToOne(cascade = CascadeType.ALL, mappedBy="AmericanFootballSpringBootModelUser")
-	@Column (name = "coach_username") private String coachUsername;
+	@Column (name = "coach_username") 
+	private String coachUsername;
 		
 	@NotBlank
-	@Column (name = "training_specialistaion") private String specialisation;
+	@Column (name = "training_specialistaion") 
+	private String specialisation;
 	
 	public AmericanFootballSpringBootModelCoach()
 	{

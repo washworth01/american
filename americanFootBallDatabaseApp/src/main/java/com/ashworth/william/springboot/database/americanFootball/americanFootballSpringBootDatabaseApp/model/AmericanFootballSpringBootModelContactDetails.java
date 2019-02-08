@@ -28,24 +28,31 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class AmericanFootballSpringBootModelContactDetails
 {
 	@Id
+	@Column (name = "postcode")
 	String postcode;
 	
 	@Id
-	String houseName;
+	@Column (name = "house_number")
+	int houseNumber;
 		
 	@NotBlank
-	@Column (name = "address_line1") private String addressLine1;
+	@Column (name = "address_line1") 
+	private String addressLine1;
 	
-	@Column (name = "address_line2") private String addressLine2;
-	
-	@NotBlank
-	@Column (name = "ciy") private String city;
-	
-	@NotBlank
-	@Column (name = "county") private String county;
+	@Column (name = "address_line2") 
+	private String addressLine2;
 	
 	@NotBlank
-	@Column (name = "phone_number") private String phoneNumber;
+	@Column (name = "ciy")
+	private String city;
+	
+	@NotBlank
+	@Column (name = "county")
+	private String county;
+	
+	@NotBlank
+	@Column (name = "phone_number")
+	private String phoneNumber;
 	
 	@OneToMany (cascade = CascadeType.ALL, mappedBy = "AmericanFootballSpringBootModelUser")
 	@JoinColumn(name = "username", nullable = true)
@@ -56,20 +63,20 @@ public class AmericanFootballSpringBootModelContactDetails
 		
 	}
 		
-	public AmericanFootballSpringBootModelContactDetails(String postcode, String houseName, String addressLine1, String city, String county, String phoneNumber)
+	public AmericanFootballSpringBootModelContactDetails(String postcode, int houseNumber, String addressLine1, String city, String county, String phoneNumber)
 	{
 		this.postcode = postcode;
-		this.houseName = houseName;
+		this.houseNumber = houseNumber;
 		this.addressLine1 = addressLine1;
 		this.city = city;
 		this.county = county;
 		this.phoneNumber = phoneNumber;
 	}
 	
-	public AmericanFootballSpringBootModelContactDetails(String postcode, String houseName, String addressLine1, String addressLine2, String city, String county, String phoneNumber)
+	public AmericanFootballSpringBootModelContactDetails(String postcode, int houseNumber, String addressLine1, String addressLine2, String city, String county, String phoneNumber)
 	{
 		this.postcode = postcode;
-		this.houseName = houseName;
+		this.houseNumber = houseNumber;
 		this.addressLine1 = addressLine1;
 		this.addressLine2 = addressLine2;
 		this.city = city;
@@ -87,14 +94,14 @@ public class AmericanFootballSpringBootModelContactDetails
 		this.postcode = postcode;
 	}
 
-	public String getHouseName() 
+	public int getHouseNumber() 
 	{
-		return houseName;
+		return houseNumber;
 	}
 
-	public void setHouseName(String houseName)
+	public void setHouseNumber(int houseNumber)
 	{
-		this.houseName = houseName;
+		this.houseNumber = houseNumber;
 	}
 
 	public String getAddressLine1()
