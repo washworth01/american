@@ -62,9 +62,9 @@ public class AmericanFootballSpringBootModelUser
 	private AmericanFootballSpringBootModelContactDetails contactdetails;
 		
 	
-//	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-//	@JoinColumn(name = "contact_details_id", nullable = false)
-//	private AmericanFootballSpringBootModelContactDetails contactDetail;
+	@OneToOne(mappedBy = "user")
+	@JsonIgnore
+	private AmericanFootballSpringBootModelCoach coach;
 	
 	public AmericanFootballSpringBootModelUser()
 	{
@@ -73,7 +73,8 @@ public class AmericanFootballSpringBootModelUser
 
 	public AmericanFootballSpringBootModelUser(@NotBlank String username, @NotBlank String password,
 			@NotBlank String emailAddress, @NotBlank String firstName, @NotBlank String lastName,
-			@NotBlank Date dateOfBirth, @NotBlank String description, @NotBlank AmericanFootballSpringBootModelContactDetails contactdetailid) {
+			@NotBlank Date dateOfBirth, @NotBlank String description, @NotBlank AmericanFootballSpringBootModelContactDetails contactdetails,
+			AmericanFootballSpringBootModelCoach coach) {
 		super();
 		this.contactdetails = contactdetails;
 		this.username = username;
@@ -83,6 +84,7 @@ public class AmericanFootballSpringBootModelUser
 		this.lastName = lastName;
 		this.dateOfBirth = dateOfBirth;
 		this.description = description;
+		this.coach = coach;
 	}
 
 	public String getUsername() {

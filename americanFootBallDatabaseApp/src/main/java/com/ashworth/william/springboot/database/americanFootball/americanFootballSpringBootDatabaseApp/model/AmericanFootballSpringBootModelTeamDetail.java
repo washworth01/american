@@ -36,11 +36,11 @@ public class AmericanFootballSpringBootModelTeamDetail
 	private String teamName;
 
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinColumn(name = "coach_id")
+	@JoinColumn(name = "coachid")
 	private AmericanFootballSpringBootModelCoach coach;
 	
 	@OneToOne (cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinColumn(name = "contact_details_id")
+	@JoinColumn(name = "contactdetailsid")
 	private AmericanFootballSpringBootModelContactDetails contactDetails;
 	
 	private String description;

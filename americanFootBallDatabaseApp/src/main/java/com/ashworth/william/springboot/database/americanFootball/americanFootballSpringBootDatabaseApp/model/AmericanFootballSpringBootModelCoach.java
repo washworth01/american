@@ -17,23 +17,25 @@ import javax.validation.constraints.NotBlank;
 
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "coach")
 @EntityListeners(AuditingEntityListener.class)
 @JsonIgnoreProperties(value = {"creationDate", "lastModified"}, allowGetters = true)
-public class AmericanFootballSpringBootModelCoach implements Serializable
+public class AmericanFootballSpringBootModelCoach
 {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
-	private Long coachId;
+	private Long coachid;
 		
 	@NotBlank
 	private String trainingSpecialisation;
 	
-	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinColumn(name = "user_id")
+	@OneToOne(fetch = FetchType.EAGER, optional=false)
+	@JoinColumn(name = "userid", nullable=false)
+	@JsonIgnore
 	private AmericanFootballSpringBootModelUser user;
 
 	public AmericanFootballSpringBootModelCoach()
@@ -41,20 +43,20 @@ public class AmericanFootballSpringBootModelCoach implements Serializable
 		
 	}
 
-	public AmericanFootballSpringBootModelCoach(Long coachId, @NotBlank String trainingSpecialisation,
-			@NotBlank AmericanFootballSpringBootModelUser user) {
+	public AmericanFootballSpringBootModelCoach(Long coachid, @NotBlank String trainingSpecialisation,
+	AmericanFootballSpringBootModelUser user) {
 		super();
-		this.coachId = coachId;
+		this.coachid = coachid;
 		this.trainingSpecialisation = trainingSpecialisation;
 		this.user = user;
 	}
 
 	public Long getCoachId() {
-		return coachId;
+		return coachid;
 	}
 
-	public void setCoachId(Long coachId) {
-		this.coachId = coachId;
+	public void setCoachId(Long coachid) {
+		this.coachid = coachid;
 	}
 
 	public String getTrainingSpecialisation() {
