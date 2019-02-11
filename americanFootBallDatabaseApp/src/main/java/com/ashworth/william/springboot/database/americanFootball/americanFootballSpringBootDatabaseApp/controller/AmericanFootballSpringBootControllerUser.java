@@ -55,7 +55,7 @@ public class AmericanFootballSpringBootControllerUser
 		uSDM.setPassword(userDetails.getPassword());
 		uSDM.setFirstName(userDetails.getFirstName());
 		uSDM.setLastName(userDetails.getLastName());
-		uSDM.setEmail(userDetails.getEmail());
+		uSDM.setEmailAddress(userDetails.getEmailAddress());
 		uSDM.setDateOfBirth(userDetails.getDateOfBirth());
 		uSDM.setDescription(userDetails.getDescription());
 

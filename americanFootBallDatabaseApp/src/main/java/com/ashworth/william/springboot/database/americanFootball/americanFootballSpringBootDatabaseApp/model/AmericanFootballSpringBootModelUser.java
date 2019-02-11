@@ -87,6 +87,14 @@ public class AmericanFootballSpringBootModelUser
 		this.coach = coach;
 	}
 
+	public long getUserid() {
+		return userid;
+	}
+
+	public void setUserid(long userid) {
+		this.userid = userid;
+	}
+
 	public String getUsername() {
 		return username;
 	}
@@ -103,12 +111,12 @@ public class AmericanFootballSpringBootModelUser
 		this.password = password;
 	}
 
-	public String getEmail() {
+	public String getEmailAddress() {
 		return emailAddress;
 	}
 
-	public void setEmail(String email) {
-		this.emailAddress = email;
+	public void setEmailAddress(String emailAddress) {
+		this.emailAddress = emailAddress;
 	}
 
 	public String getFirstName() {
@@ -143,20 +151,21 @@ public class AmericanFootballSpringBootModelUser
 		this.description = description;
 	}
 
-	public Long getUserId() {
-		return userid;
-	}
-
-	public void setUserId(Long userId) {
-		this.userid = userId;
-	}
-
-	public AmericanFootballSpringBootModelContactDetails getContactDetails() {
+	public AmericanFootballSpringBootModelContactDetails getContactdetails() {
 		return contactdetails;
 	}
 
-	public void setContactDetails(AmericanFootballSpringBootModelContactDetails contactDetail) {
-		this.contactdetails = contactDetail;
+	public void setContactdetails(AmericanFootballSpringBootModelContactDetails contactdetails) {
+		this.contactdetails = contactdetails;
 	}
+
+	public AmericanFootballSpringBootModelCoach getCoach() {
+		return coach;
+	}
+
+	public void setCoach(AmericanFootballSpringBootModelCoach coach) {
+		this.coach = coach;
+	}	
+	
 }
 	

@@ -51,9 +51,9 @@ public class ControllerMessage
 	{	
 		ModelMessage mSDM = americanFootballRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("ModelMessage", "id", id));
 		
-		mSDM.setMessageId(messageDetails.getMessageId());
-		mSDM.setSender(messageDetails.getSender());
-		mSDM.setReceiver(messageDetails.getReceiver());
+		mSDM.setMessageid(messageDetails.getMessageid());
+		mSDM.setUserid1(messageDetails.getUserid());
+		mSDM.setUserid1(messageDetails.getUserid1());
 		mSDM.setMessage(messageDetails.getMessage());
 		
 		ModelMessage updateData = americanFootballRepository.save(mSDM);
