@@ -10,6 +10,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
@@ -31,25 +32,22 @@ public class AmericanFootballSpringBootModelCoach implements Serializable
 	@NotBlank
 	private String trainingSpecialisation;
 	
-	@NotBlank
-	private Long userId;
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name = "user_id")
+	private AmericanFootballSpringBootModelUser user;
 
 	public AmericanFootballSpringBootModelCoach()
 	{
 		
 	}
 
-	
-	
 	public AmericanFootballSpringBootModelCoach(Long coachId, @NotBlank String trainingSpecialisation,
-			@NotBlank Long userId) {
+			@NotBlank AmericanFootballSpringBootModelUser user) {
 		super();
 		this.coachId = coachId;
 		this.trainingSpecialisation = trainingSpecialisation;
-		this.userId = userId;
+		this.user = user;
 	}
-
-
 
 	public Long getCoachId() {
 		return coachId;
@@ -66,16 +64,5 @@ public class AmericanFootballSpringBootModelCoach implements Serializable
 	public void setTrainingSpecialisation(String trainingSpecialisation) {
 		this.trainingSpecialisation = trainingSpecialisation;
 	}
-
-	public Long getUserId() {
-		return userId;
-	}
-
-	public void setUserId(Long userId) {
-		this.userId = userId;
-	}
-		
-
-
 
 }

@@ -8,39 +8,40 @@ import java.util.Set;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
-@Table(name = "contact_detail")
+@Table(name = "contact_details")
 @EntityListeners(AuditingEntityListener.class)
 @JsonIgnoreProperties(value = {"creationDate", "lastModified"}, allowGetters = true)
 public class AmericanFootballSpringBootModelContactDetails
 {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
-	private Long contactDetailsId;
+	private long contactdetailsid;
 	
-	@NotBlank
+	@NotNull
 	private Integer houseNumber;
 	
-	@NotBlank
+	@NotNull
 	private String addressLine1;
 	
 	private String addressLine2;
 	
-	@NotBlank
+	@NotNull
 	private String city;
 	
-	@NotBlank
+	@NotNull
 	private String county;
 	
-	@NotBlank
+	@NotNull
 	private String postcode;
 	
-	@NotBlank
+	@NotNull
 	private String phoneNumber;
 
 	public AmericanFootballSpringBootModelContactDetails()
@@ -48,11 +49,10 @@ public class AmericanFootballSpringBootModelContactDetails
 		
 	}
 
-	public AmericanFootballSpringBootModelContactDetails(Long contactDetailsId, @NotBlank Integer houseNumber,
+	public AmericanFootballSpringBootModelContactDetails(@NotBlank Integer houseNumber,
 			@NotBlank String addressLine1, @NotBlank String city, @NotBlank String county, @NotBlank String postcode,
 			@NotBlank String phoneNumber) {
 		super();
-		this.contactDetailsId = contactDetailsId;
 		this.houseNumber = houseNumber;
 		this.addressLine1 = addressLine1;
 		this.city = city;
@@ -61,11 +61,10 @@ public class AmericanFootballSpringBootModelContactDetails
 		this.phoneNumber = phoneNumber;
 	}
 
-	public AmericanFootballSpringBootModelContactDetails(Long contactDetailsId, @NotBlank Integer houseNumber,
+	public AmericanFootballSpringBootModelContactDetails(@NotBlank Integer houseNumber,
 			@NotBlank String addressLine1, String addressLine2, @NotBlank String city, @NotBlank String county,
 			@NotBlank String postcode, @NotBlank String phoneNumber) {
 		super();
-		this.contactDetailsId = contactDetailsId;
 		this.houseNumber = houseNumber;
 		this.addressLine1 = addressLine1;
 		this.addressLine2 = addressLine2;
@@ -76,11 +75,11 @@ public class AmericanFootballSpringBootModelContactDetails
 	}
 
 	public Long getContactDetailsId() {
-		return contactDetailsId;
+		return contactdetailsid;
 	}
 
 	public void setContactDetailsId(Long contactDetailsId) {
-		this.contactDetailsId = contactDetailsId;
+		this.contactdetailsid = contactDetailsId;
 	}
 
 	public Integer getHouseNumber() {

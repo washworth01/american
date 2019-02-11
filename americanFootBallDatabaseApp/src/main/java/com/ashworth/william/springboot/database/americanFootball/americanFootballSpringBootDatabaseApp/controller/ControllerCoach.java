@@ -39,45 +39,45 @@ public class ControllerCoach
 	{
 		return americanFootballRepository.findAll();
 	}
-	
-	@GetMapping("/user/coach/{username}")
-	public AmericanFootballSpringBootModelCoach getCoach(@PathVariable(value = "username")String userName)
-	{
-		if(americanFootballRepository.findByCoachUsername(userName) == null)
-		{
-			throw new ResourceNotFoundException("AmericanFootballSpringBootModelCoach", "username", userName);
-		}
-		
-		return americanFootballRepository.findByCoachUsername(userName);
-	}
-	
-	@PutMapping("/user/coach/{username}")
-	public AmericanFootballSpringBootModelCoach updateCoach(@PathVariable(value = "username")String userName, @Valid @ RequestBody AmericanFootballSpringBootModelCoach userDetails)
-	{
-		if(americanFootballRepository.findByCoachUsername(userName) == null)
-		{
-			throw new ResourceNotFoundException("AmericanFootballSpringBootModelCoach", "username", userName);
-		}
-		
-		AmericanFootballSpringBootModelCoach cSDM = americanFootballRepository.findByCoachUsername(userName);
-		
-		cSDM.setSpecialisation(userDetails.getSpecialisation());
-		
-		AmericanFootballSpringBootModelCoach updateData = americanFootballRepository.save(cSDM);
-		return updateData;
-	}
-	
-	@DeleteMapping("/user/coach/{username}")
-	public ResponseEntity<?> deleteCoach(@PathVariable(value="username")String userName)
-	{
-		if(americanFootballRepository.findByCoachUsername(userName) == null)
-		{
-			throw new ResourceNotFoundException("AmericanFootballSpringBootModelCoach", "username", userName);
-		}
-		
-		AmericanFootballSpringBootModelCoach cSDM = americanFootballRepository.findByCoachUsername(userName);
-		
-		americanFootballRepository.delete(cSDM);
-		return ResponseEntity.ok().build();
-	}
+//	
+//	@GetMapping("/user/coach/{username}")
+//	public AmericanFootballSpringBootModelCoach getCoach(@PathVariable(value = "username")String userName)
+//	{
+//		if(americanFootballRepository.findByCoachUsername(userName) == null)
+//		{
+//			throw new ResourceNotFoundException("AmericanFootballSpringBootModelCoach", "username", userName);
+//		}
+//		
+//		return americanFootballRepository.findByCoachUsername(userName);
+//	}
+//	
+//	@PutMapping("/user/coach/{username}")
+//	public AmericanFootballSpringBootModelCoach updateCoach(@PathVariable(value = "username")String userName, @Valid @ RequestBody AmericanFootballSpringBootModelCoach userDetails)
+//	{
+//		if(americanFootballRepository.findByCoachUsername(userName) == null)
+//		{
+//			throw new ResourceNotFoundException("AmericanFootballSpringBootModelCoach", "username", userName);
+//		}
+//		
+//		AmericanFootballSpringBootModelCoach cSDM = americanFootballRepository.findByCoachUsername(userName);
+//		
+//		cSDM.setSpecialisation(userDetails.getSpecialisation());
+//		
+//		AmericanFootballSpringBootModelCoach updateData = americanFootballRepository.save(cSDM);
+//		return updateData;
+//	}
+//	
+//	@DeleteMapping("/user/coach/{username}")
+//	public ResponseEntity<?> deleteCoach(@PathVariable(value="username")String userName)
+//	{
+//		if(americanFootballRepository.findByCoachUsername(userName) == null)
+//		{
+//			throw new ResourceNotFoundException("AmericanFootballSpringBootModelCoach", "username", userName);
+//		}
+//		
+//		AmericanFootballSpringBootModelCoach cSDM = americanFootballRepository.findByCoachUsername(userName);
+//		
+//		americanFootballRepository.delete(cSDM);
+//		return ResponseEntity.ok().build();
+//	}
 }

@@ -5,22 +5,14 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.*;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EntityListeners;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.constraints.NotBlank;
-import com.fasterxml.jackson.annotation.JsonFormat;
+import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.type.DateType;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -30,44 +22,45 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.*;
 
-@Data 
-
 @Entity
 @Table(name = "user")
 @EntityListeners(AuditingEntityListener.class)
 @JsonIgnoreProperties(value = {"creationDate", "lastModified"}, allowGetters = true)
+@DynamicInsert(true)
+@DynamicUpdate(true)
 public class AmericanFootballSpringBootModelUser
 {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
-	private Long userId;
+	private long userid;
 	
-	@NotBlank
+	@NotNull
 	private String username;
 	
-	@NotBlank
+	@NotNull
 	private String password;
 	
-	@NotBlank
-	private String email;
+	@NotNull
+	private String emailAddress;
 	
-	@NotBlank
+	@NotNull
 	private String firstName;
 	
-	@NotBlank
+	@NotNull
 	private String lastName;
 	
-	@NotBlank
+	@NotNull
 	@JsonFormat(pattern="yyyy-MM-dd")
     private Date dateOfBirth; 
 	
-	@NotBlank
+	@NotNull
 	private String description;
-	
-	@NotBlank
-	private Long contactDetailId;
-	
-	
+		
+	@ManyToOne(fetch = FetchType.EAGER, optional =false)
+	@JoinColumn(name = "contactdetailsid", nullable = false)
+	@JsonIgnore
+	private AmericanFootballSpringBootModelContactDetails contactdetails;
+		
 	
 //	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 //	@JoinColumn(name = "contact_details_id", nullable = false)
@@ -78,27 +71,18 @@ public class AmericanFootballSpringBootModelUser
 		
 	}
 
-	public AmericanFootballSpringBootModelUser(Long userId, @NotBlank String username, @NotBlank String password,
-			@NotBlank String email, @NotBlank String firstName, @NotBlank String lastName,
-			@NotBlank Date dateOfBirth, @NotBlank String description, @NotBlank Long contactDetailId) {
+	public AmericanFootballSpringBootModelUser(@NotBlank String username, @NotBlank String password,
+			@NotBlank String emailAddress, @NotBlank String firstName, @NotBlank String lastName,
+			@NotBlank Date dateOfBirth, @NotBlank String description, @NotBlank AmericanFootballSpringBootModelContactDetails contactdetailid) {
 		super();
-		this.userId = userId;
+		this.contactdetails = contactdetails;
 		this.username = username;
 		this.password = password;
-		this.email = email;
+		this.emailAddress = emailAddress;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.dateOfBirth = dateOfBirth;
 		this.description = description;
-		this.contactDetailId = contactDetailId;
-	}
-
-	public Long getUserId() {
-		return userId;
-	}
-
-	public void setUserId(Long userId) {
-		this.userId = userId;
 	}
 
 	public String getUsername() {
@@ -118,11 +102,11 @@ public class AmericanFootballSpringBootModelUser
 	}
 
 	public String getEmail() {
-		return email;
+		return emailAddress;
 	}
 
 	public void setEmail(String email) {
-		this.email = email;
+		this.emailAddress = email;
 	}
 
 	public String getFirstName() {
@@ -157,15 +141,20 @@ public class AmericanFootballSpringBootModelUser
 		this.description = description;
 	}
 
-	public Long getContactDetailId() {
-		return contactDetailId;
+	public Long getUserId() {
+		return userid;
 	}
 
-	public void setContactDetailId(Long contactDetailId) {
-		this.contactDetailId = contactDetailId;
+	public void setUserId(Long userId) {
+		this.userid = userId;
 	}
-	
 
+	public AmericanFootballSpringBootModelContactDetails getContactDetails() {
+		return contactdetails;
+	}
 
+	public void setContactDetails(AmericanFootballSpringBootModelContactDetails contactDetail) {
+		this.contactdetails = contactDetail;
+	}
 }
 	

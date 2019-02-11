@@ -17,9 +17,7 @@
 //import org.springframework.web.bind.annotation.RestController;
 //
 //import com.ashworth.william.springboot.database.americanFootball.americanFootballSpringBootDatabaseApp.exception.ResourceNotFoundException;
-//import com.ashworth.william.springboot.database.americanFootball.americanFootballSpringBootDatabaseApp.model.AmericanFootballSpringBootModelContactDetails;
 //import com.ashworth.william.springboot.database.americanFootball.americanFootballSpringBootDatabaseApp.model.ModelTeamMember;
-//import com.ashworth.william.springboot.database.americanFootball.americanFootballSpringBootDatabaseApp.repository.RepositoryContactDetails;
 //import com.ashworth.william.springboot.database.americanFootball.americanFootballSpringBootDatabaseApp.repository.RepositoryTeamMember;
 //
 //@CrossOrigin
@@ -42,48 +40,48 @@
 //		return americanFootballRepository.findAll();
 //	}
 //	
-//	@GetMapping("/team/member/{team}/{player}")
-//	public ModelTeamMember getContactDetails(@PathVariable(value = "team")String teamName, @PathVariable(value = "player") String player)
-//	{
-//		if(americanFootballRepository.findByTeamAndPlayer(teamName, player) == null)
-//		{
-//			throw new ResourceNotFoundException("ModelTeamMember", "team", teamName);
-//		}
-//		
-//		return americanFootballRepository.findByTeamAndPlayer(teamName, player);
-//	}
-//	
-//	@PutMapping("/team/member/{team}/{player}")
-//	public ModelTeamMember updateTeamMember(@PathVariable(value = "team")String teamName, @PathVariable(value = "player") String player,
-//			@Valid @RequestBody ModelTeamMember memberDetails)
-//	{
-//		if(americanFootballRepository.findByTeamAndPlayer(teamName, player) == null)
-//		{
-//			throw new ResourceNotFoundException("ModelTeamMember", "team", teamName);
-//		}
-//		
-//		ModelTeamMember tMSDM = americanFootballRepository.findByTeamAndPlayer(teamName, player);
-//		
-//		tMSDM.setTeam(memberDetails.getTeam());
-//		tMSDM.setPlayer(memberDetails.getPlayer());
-//		tMSDM.setPlayerNumber(memberDetails.getPlayerNumber());
-//		
-//		
-//		ModelTeamMember updateData = americanFootballRepository.save(tMSDM);
-//		return updateData;
-//	}
-//	
-//	@DeleteMapping("/team/member/{team}/{player}")
-//	public ResponseEntity<?> deleteTeamMember(@PathVariable(value = "team")String teamName, @PathVariable(value = "player") String player)
-//	{		
-//		if(americanFootballRepository.findByTeamAndPlayer(teamName, player) == null)
-//		{
-//			throw new ResourceNotFoundException("ModelTeamMember", "team", teamName);
-//		}
-//		
-//		ModelTeamMember tMSDM = americanFootballRepository.findByTeamAndPlayer(teamName, player);
-//		
-//		americanFootballRepository.delete(tMSDM);
-//		return ResponseEntity.ok().build();
-//	}
+////	@GetMapping("/team/member/{team}/{player}")
+////	public ModelTeamMember getContactDetails(@PathVariable(value = "team")String teamName, @PathVariable(value = "player") String player)
+////	{
+////		if(americanFootballRepository.findByTeamAndPlayer(teamName, player) == null)
+////		{
+////			throw new ResourceNotFoundException("ModelTeamMember", "team", teamName);
+////		}
+////		
+////		return americanFootballRepository.findByTeamAndPlayer(teamName, player);
+////	}
+////	
+////	@PutMapping("/team/member/{team}/{player}")
+////	public ModelTeamMember updateTeamMember(@PathVariable(value = "team")String teamName, @PathVariable(value = "player") String player,
+////			@Valid @RequestBody ModelTeamMember memberDetails)
+////	{
+////		if(americanFootballRepository.findByTeamAndPlayer(teamName, player) == null)
+////		{
+////			throw new ResourceNotFoundException("ModelTeamMember", "team", teamName);
+////		}
+////		
+////		ModelTeamMember tMSDM = americanFootballRepository.findByTeamAndPlayer(teamName, player);
+////		
+////		tMSDM.setTeam(memberDetails.getTeam());
+////		tMSDM.setPlayer(memberDetails.getPlayer());
+////		tMSDM.setPlayerNumber(memberDetails.getPlayerNumber());
+////		
+////		
+////		ModelTeamMember updateData = americanFootballRepository.save(tMSDM);
+////		return updateData;
+////	}
+////	
+////	@DeleteMapping("/team/member/{team}/{player}")
+////	public ResponseEntity<?> deleteTeamMember(@PathVariable(value = "team")String teamName, @PathVariable(value = "player") String player)
+////	{		
+////		if(americanFootballRepository.findByTeamAndPlayer(teamName, player) == null)
+////		{
+////			throw new ResourceNotFoundException("ModelTeamMember", "team", teamName);
+////		}
+////		
+////		ModelTeamMember tMSDM = americanFootballRepository.findByTeamAndPlayer(teamName, player);
+////		
+////		americanFootballRepository.delete(tMSDM);
+////		return ResponseEntity.ok().build();
+////	}
 //}

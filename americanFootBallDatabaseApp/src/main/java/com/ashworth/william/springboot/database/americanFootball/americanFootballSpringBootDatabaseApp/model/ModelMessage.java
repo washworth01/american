@@ -28,10 +28,10 @@ public class ModelMessage implements Serializable
 	private Long messageId;
 	
 	@NotBlank
-	private Long sender;
+	private Long senderId;
 	
 	@NotBlank
-	private Long receiver;
+	private Long receiverId;
 	
 	@NotBlank
 	@Column
@@ -42,10 +42,10 @@ public class ModelMessage implements Serializable
 		
 	}
 	
-	public ModelMessage(Long sender, Long receiver, String message)
+	public ModelMessage(Long senderId, Long receiverId, String message)
 	{
-		this.sender = sender;
-		this.receiver = receiver;
+		this.senderId = senderId;
+		this.receiverId = receiverId;
 		this.message = message;
 	}
 
@@ -58,19 +58,19 @@ public class ModelMessage implements Serializable
 	}
 
 	public Long getSender() {
-		return sender;
+		return senderId;
 	}
 
-	public void setSender(Long sender) {
-		this.sender = sender;
+	public void setSender(Long senderId) {
+		this.senderId = senderId;
 	}
 
 	public Long getReceiver() {
-		return receiver;
+		return receiverId;
 	}
 
-	public void setReceiver(Long receiver) {
-		this.receiver = receiver;
+	public void setReceiver(Long receiverId) {
+		this.receiverId = receiverId;
 	}
 
 	public String getMessage() {

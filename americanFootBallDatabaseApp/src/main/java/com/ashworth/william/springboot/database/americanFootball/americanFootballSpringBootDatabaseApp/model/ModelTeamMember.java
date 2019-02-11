@@ -25,13 +25,16 @@
 //{
 //	
 //	@Id
-//	@ManyToOne
-//	private AmericanFootballSpringBootModelTeamDetail team;
+//	private Long teamId;
+////	@ManyToOne
+////	private AmericanFootballSpringBootModelTeamDetail team;
 //	
 //	@Id
-//	@ManyToOne
-//	private AmericanFootballSpringBootModelPlayer player;
+//	private Long playerId;
 //	
+////	@ManyToOne
+////	private AmericanFootballSpringBootModelPlayer player;
+////	
 //	@NotBlank
 //	@Column
 //	private int playerNumber;
@@ -41,42 +44,35 @@
 //		
 //	}
 //	
-//	public ModelTeamMember(AmericanFootballSpringBootModelTeamDetail team ,AmericanFootballSpringBootModelPlayer player, int playerNumber)
+//	public ModelTeamMember(Long teamId ,Long playerId, int playerNumber)
 //	{
-//		this.team = team;
-//		this.player = player;
+//		this.teamId = teamId;
+//		this.playerId = playerId;
 //		this.playerNumber = playerNumber;
 //	}
 //
-//	public AmericanFootballSpringBootModelTeamDetail getTeam()
-//	{
-//		return team;
+//	public Long getTeamId() {
+//		return teamId;
 //	}
 //
-//	public void setTeam(AmericanFootballSpringBootModelTeamDetail team) 
-//	{
-//		this.team = team;
+//	public void setTeamId(Long teamId) {
+//		this.teamId = teamId;
 //	}
 //
-//	public AmericanFootballSpringBootModelPlayer getPlayer() 
-//	{
-//		return player;
+//	public Long getPlayerId() {
+//		return playerId;
 //	}
 //
-//	public void setPlayer(AmericanFootballSpringBootModelPlayer player)
-//	{
-//		this.player = player;
+//	public void setPlayerId(Long playerId) {
+//		this.playerId = playerId;
 //	}
 //
-//	public int getPlayerNumber()
-//	{
+//	public int getPlayerNumber() {
 //		return playerNumber;
 //	}
 //
-//	public void setPlayerNumber(int playerNumber)
-//	{
+//	public void setPlayerNumber(int playerNumber) {
 //		this.playerNumber = playerNumber;
 //	}
-//	
 //	
 //}

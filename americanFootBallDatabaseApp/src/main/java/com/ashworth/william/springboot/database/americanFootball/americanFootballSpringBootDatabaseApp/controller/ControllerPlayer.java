@@ -40,45 +40,45 @@ public class ControllerPlayer
 		return americanFootballRepository.findAll();
 	}
 	
-	@GetMapping("/user/player/{username}")
-	public AmericanFootballSpringBootModelPlayer getPlayer(@PathVariable(value = "username")String userName)
-	{
-		if(americanFootballRepository.findByPlayerUsername(userName) == null)
-		{
-			throw new ResourceNotFoundException("AmericanFootballSpringBootModelPlayer", "username", userName);
-		}
-		
-		return americanFootballRepository.findByPlayerUsername(userName);
-	}
-	
-	@PutMapping("/user/player/{username}")
-	public AmericanFootballSpringBootModelPlayer updatePlayer(@PathVariable(value = "username")String userName, @Valid @ RequestBody AmericanFootballSpringBootModelPlayer userDetails)
-	{
-		if(americanFootballRepository.findByPlayerUsername(userName) == null)
-		{
-			throw new ResourceNotFoundException("AmericanFootballSpringBootModelPlayer", "username", userName);
-		}
-		
-		AmericanFootballSpringBootModelPlayer pSDM = americanFootballRepository.findByPlayerUsername(userName);
-		
-		pSDM.setRole(userDetails.getRole());
-		pSDM.setPosition(userDetails.getPosition());
-		
-		AmericanFootballSpringBootModelPlayer updateData = americanFootballRepository.save(pSDM);
-		return updateData;
-	}
-	
-	@DeleteMapping("/user/player/{username}")
-	public ResponseEntity<?> deletePlayer(@PathVariable(value="username")String userName)
-	{
-		if(americanFootballRepository.findByPlayerUsername(userName) == null)
-		{
-			throw new ResourceNotFoundException("AmericanFootballSpringBootModelPlayer", "username", userName);
-		}
-		
-		AmericanFootballSpringBootModelPlayer pSDM = americanFootballRepository.findByPlayerUsername(userName);
-		
-		americanFootballRepository.delete(pSDM);
-		return ResponseEntity.ok().build();
-	}
+//	@GetMapping("/user/player/{username}")
+//	public AmericanFootballSpringBootModelPlayer getPlayer(@PathVariable(value = "username")String userName)
+//	{
+//		if(americanFootballRepository.findByPlayerUsername(userName) == null)
+//		{
+//			throw new ResourceNotFoundException("AmericanFootballSpringBootModelPlayer", "username", userName);
+//		}
+//		
+//		return americanFootballRepository.findByPlayerUsername(userName);
+//	}
+//	
+//	@PutMapping("/user/player/{username}")
+//	public AmericanFootballSpringBootModelPlayer updatePlayer(@PathVariable(value = "username")String userName, @Valid @ RequestBody AmericanFootballSpringBootModelPlayer userDetails)
+//	{
+//		if(americanFootballRepository.findByPlayerUsername(userName) == null)
+//		{
+//			throw new ResourceNotFoundException("AmericanFootballSpringBootModelPlayer", "username", userName);
+//		}
+//		
+//		AmericanFootballSpringBootModelPlayer pSDM = americanFootballRepository.findByPlayerUsername(userName);
+//		
+//		pSDM.setRole(userDetails.getRole());
+//		pSDM.setPosition(userDetails.getPosition());
+//		
+//		AmericanFootballSpringBootModelPlayer updateData = americanFootballRepository.save(pSDM);
+//		return updateData;
+//	}
+//	
+//	@DeleteMapping("/user/player/{username}")
+//	public ResponseEntity<?> deletePlayer(@PathVariable(value="username")String userName)
+//	{
+//		if(americanFootballRepository.findByPlayerUsername(userName) == null)
+//		{
+//			throw new ResourceNotFoundException("AmericanFootballSpringBootModelPlayer", "username", userName);
+//		}
+//		
+//		AmericanFootballSpringBootModelPlayer pSDM = americanFootballRepository.findByPlayerUsername(userName);
+//		
+//		americanFootballRepository.delete(pSDM);
+//		return ResponseEntity.ok().build();
+//	}
 }

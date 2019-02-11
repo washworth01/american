@@ -8,5 +8,5 @@
 //@Repository
 //public interface RepositoryTeamMember extends JpaRepository<ModelTeamMember, Long>
 //{
-//	public ModelTeamMember findByTeamAndPlayer(String teamName, String player);
+//
 //}
