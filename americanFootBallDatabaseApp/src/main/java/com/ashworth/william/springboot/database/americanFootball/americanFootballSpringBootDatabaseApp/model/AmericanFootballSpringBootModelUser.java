@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
+import javax.persistence.*;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
@@ -19,123 +19,153 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotBlank;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
+import org.hibernate.type.DateType;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import lombok.*;
+
+@Data 
+
 @Entity
 @Table(name = "user")
 @EntityListeners(AuditingEntityListener.class)
 @JsonIgnoreProperties(value = {"creationDate", "lastModified"}, allowGetters = true)
-public class AmericanFootballSpringBootModelUser implements Serializable
+public class AmericanFootballSpringBootModelUser
 {
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
-	@Column (name = "username") private String username;
-	
-	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name ="coach_username", nullable=true)
-	private AmericanFootballSpringBootModelCoach coach;
-	
-	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="player_username", nullable=true)
-	private AmericanFootballSpringBootModelPlayer player;
+	private Long userId;
 	
 	@NotBlank
-	@Column (name = "password") private String password;
+	private String username;
 	
 	@NotBlank
-	@Column (name = "email_address") private String email_address;
+	private String password;
 	
 	@NotBlank
-	@Column (name = "first_name") private String first_name;
+	private String email;
 	
 	@NotBlank
-	@Column (name = "last_name") private String last_name;
+	private String firstName;
 	
 	@NotBlank
-	@Column (name = "age") private int age;
+	private String lastName;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	private AmericanFootballSpringBootModelContactDetails contactDetails;
+	@NotBlank
+	@JsonFormat(pattern="yyyy-MM-dd")
+    private Date dateOfBirth; 
 	
-
+	@NotBlank
+	private String description;
+	
+	@NotBlank
+	private Long contactDetailId;
+	
+	
+	
+//	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+//	@JoinColumn(name = "contact_details_id", nullable = false)
+//	private AmericanFootballSpringBootModelContactDetails contactDetail;
+	
 	public AmericanFootballSpringBootModelUser()
 	{
 		
 	}
-		
-	public AmericanFootballSpringBootModelUser(String username, String password, String email_address, String first_name, String last_name, int age, String actors)
-	{
+
+	public AmericanFootballSpringBootModelUser(Long userId, @NotBlank String username, @NotBlank String password,
+			@NotBlank String email, @NotBlank String firstName, @NotBlank String lastName,
+			@NotBlank Date dateOfBirth, @NotBlank String description, @NotBlank Long contactDetailId) {
+		super();
+		this.userId = userId;
 		this.username = username;
 		this.password = password;
-		this.email_address = email_address;
-		this.first_name = first_name;
-		this.last_name = last_name;
-		this.age = age;
+		this.email = email;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.dateOfBirth = dateOfBirth;
+		this.description = description;
+		this.contactDetailId = contactDetailId;
 	}
 
-	public String getUsername() 
-	{
+	public Long getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Long userId) {
+		this.userId = userId;
+	}
+
+	public String getUsername() {
 		return username;
 	}
 
-	public void setUsername(String username) 
-	{
+	public void setUsername(String username) {
 		this.username = username;
 	}
 
-	public String getPassword() 
-	{
+	public String getPassword() {
 		return password;
 	}
 
-	public void setPassword(String password) 
-	{
+	public void setPassword(String password) {
 		this.password = password;
 	}
 
-	public String getEmail_address()
-	{
-		return email_address;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setEmail_address(String email_address)
-	{
-		this.email_address = email_address;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
-	public String getFirst_name() 
-	{
-		return first_name;
+	public String getFirstName() {
+		return firstName;
 	}
 
-	public void setFirst_name(String first_name)
-	{
-		this.first_name = first_name;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
 
-	public String getLast_name() 
-	{
-		return last_name;
+	public String getLastName() {
+		return lastName;
 	}
 
-	public void setLast_name(String last_name)
-	{
-		this.last_name = last_name;
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 
-	public int getAge()
-	{
-		return age;
+	public Date getDateOfBirth() {
+		return dateOfBirth;
 	}
 
-	public void setAge(int age)
-	{
-		this.age = age;
+	public void setDateOfBirth(Date dateOfBirth) {
+		this.dateOfBirth = dateOfBirth;
 	}
 
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public Long getContactDetailId() {
+		return contactDetailId;
+	}
+
+	public void setContactDetailId(Long contactDetailId) {
+		this.contactDetailId = contactDetailId;
+	}
 	
+
+
 }
+	

@@ -7,8 +7,9 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
@@ -23,44 +24,58 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(value = {"creationDate", "lastModified"}, allowGetters = true)
 public class AmericanFootballSpringBootModelCoach implements Serializable
 {
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
-	@OneToOne(cascade = CascadeType.ALL, mappedBy="AmericanFootballSpringBootModelUser")
-	@Column (name = "coach_username") 
-	private String coachUsername;
+	private Long coachId;
 		
 	@NotBlank
-	@Column (name = "training_specialistaion") 
-	private String specialisation;
+	private String trainingSpecialisation;
 	
+	@NotBlank
+	private Long userId;
+
 	public AmericanFootballSpringBootModelCoach()
 	{
 		
 	}
+
+	
+	
+	public AmericanFootballSpringBootModelCoach(Long coachId, @NotBlank String trainingSpecialisation,
+			@NotBlank Long userId) {
+		super();
+		this.coachId = coachId;
+		this.trainingSpecialisation = trainingSpecialisation;
+		this.userId = userId;
+	}
+
+
+
+	public Long getCoachId() {
+		return coachId;
+	}
+
+	public void setCoachId(Long coachId) {
+		this.coachId = coachId;
+	}
+
+	public String getTrainingSpecialisation() {
+		return trainingSpecialisation;
+	}
+
+	public void setTrainingSpecialisation(String trainingSpecialisation) {
+		this.trainingSpecialisation = trainingSpecialisation;
+	}
+
+	public Long getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Long userId) {
+		this.userId = userId;
+	}
 		
-	public AmericanFootballSpringBootModelCoach(String coachUsername, String specialisation)
-	{
-		this.coachUsername = coachUsername;
-		this.specialisation = specialisation;
-	}
 
-	public String getCoachUsername() 
-	{
-		return coachUsername;
-	}
 
-	public void setCoachUsername(String coach_username) 
-	{
-		this.coachUsername = coach_username;
-	}
 
-	public String getSpecialisation() 
-	{
-		return specialisation;
-	}
-
-	public void setSpecialisation(String specialisation) 
-	{
-		this.specialisation = specialisation;
-	}
-		
 }

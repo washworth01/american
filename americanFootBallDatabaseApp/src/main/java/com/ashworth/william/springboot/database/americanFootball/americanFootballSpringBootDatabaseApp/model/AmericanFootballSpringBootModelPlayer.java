@@ -2,20 +2,15 @@ package com.ashworth.william.springboot.database.americanFootball.americanFootba
 
 import java.io.Serializable;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EntityListeners;
-import javax.persistence.FetchType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import lombok.Data;
+@Data
 
 @Entity
 @Table(name = "player")
@@ -23,58 +18,67 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(value = {"creationDate", "lastModified"}, allowGetters = true)
 public class AmericanFootballSpringBootModelPlayer implements Serializable
 {
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
-	@OneToOne(cascade = CascadeType.ALL, mappedBy="AmericanFootballSpringBootModelUser")
-	@Column (name = "player_username") private String playerUsername;
-		
+	private Long playerId;
+	
+//	@OneToOne(fetch = FetchType.LAZY)
+//	@JoinColumn
+//	@MapsId
+//	private AmericanFootballSpringBootModelUser playerusername;
+//		
 	@NotBlank
-	@Column 
-	private String role;
+	private String preferedRole;
 	
 	@NotBlank
-	@Column (name = "prefered_position") private String position;
+	private String preferedPosition;
 	
+	@NotBlank
+	private Long userId;
 	
 	public AmericanFootballSpringBootModelPlayer()
 	{
 		
 	}
 		
-	public AmericanFootballSpringBootModelPlayer(String playerUsername, String role, String position)
+	public AmericanFootballSpringBootModelPlayer(String preferedRole, String preferedPosition, Long userId)
 	{
-		this.playerUsername = playerUsername;
-		this.role = role;
-		this.position = position;
+		this.preferedRole = preferedRole;
+		this.preferedPosition = preferedPosition;
+		this.userId = userId;
 	}
 
-	public String getPlayerUsername()
-	{
-		return playerUsername;
+	public Long getPlayerId() {
+		return playerId;
 	}
 
-	public void setPlayerUsername(String player_username)
-	{
-		this.playerUsername = player_username;
+	public void setPlayerId(Long playerId) {
+		this.playerId = playerId;
 	}
 
-	public String getRole() 
-	{
-		return role;
+	public String getPreferedRole() {
+		return preferedRole;
 	}
 
-	public void setRole(String role) 
-	{
-		this.role = role;
+	public void setPreferedRole(String preferedRole) {
+		this.preferedRole = preferedRole;
+	}
+
+	public String getPreferedPosition() {
+		return preferedPosition;
+	}
+
+	public void setPreferedPosition(String preferedPosition) {
+		this.preferedPosition = preferedPosition;
+	}
+
+	public Long getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Long userId) {
+		this.userId = userId;
 	}
 	
-	public String getPosition() 
-	{
-		return position;
-	}
 
-	public void setPosition(String position) 
-	{
-		this.position = position;
-	}
-		
 }

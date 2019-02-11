@@ -28,20 +28,20 @@ public class ControllerPlayer
 	@Autowired
 	RepositoryPlayer americanFootballRepository;
 	
-	@PostMapping("/user/coach")
-	public AmericanFootballSpringBootModelPlayer createUser(@Valid @ RequestBody AmericanFootballSpringBootModelPlayer pSDM)
+	@PostMapping("/user/player")
+	public AmericanFootballSpringBootModelPlayer createPlayer(@Valid @ RequestBody AmericanFootballSpringBootModelPlayer pSDM)
 	{
 		return americanFootballRepository.save(pSDM);
 	}
 	
-	@GetMapping("/user/coach")
-	public List<AmericanFootballSpringBootModelPlayer> getAllUsers()
+	@GetMapping("/user/player")
+	public List<AmericanFootballSpringBootModelPlayer> getAllPlayers()
 	{
 		return americanFootballRepository.findAll();
 	}
 	
-	@GetMapping("/user/coach/{username}")
-	public AmericanFootballSpringBootModelPlayer getUser(@PathVariable(value = "username")String userName)
+	@GetMapping("/user/player/{username}")
+	public AmericanFootballSpringBootModelPlayer getPlayer(@PathVariable(value = "username")String userName)
 	{
 		if(americanFootballRepository.findByPlayerUsername(userName) == null)
 		{
@@ -51,8 +51,8 @@ public class ControllerPlayer
 		return americanFootballRepository.findByPlayerUsername(userName);
 	}
 	
-	@PutMapping("/user/coach/{username}")
-	public AmericanFootballSpringBootModelPlayer updateUser(@PathVariable(value = "username")String userName, @Valid @ RequestBody AmericanFootballSpringBootModelPlayer userDetails)
+	@PutMapping("/user/player/{username}")
+	public AmericanFootballSpringBootModelPlayer updatePlayer(@PathVariable(value = "username")String userName, @Valid @ RequestBody AmericanFootballSpringBootModelPlayer userDetails)
 	{
 		if(americanFootballRepository.findByPlayerUsername(userName) == null)
 		{
@@ -68,8 +68,8 @@ public class ControllerPlayer
 		return updateData;
 	}
 	
-	@DeleteMapping("/user/coach/{username}")
-	public ResponseEntity<?> deleteCoach(@PathVariable(value="username")String userName)
+	@DeleteMapping("/user/player/{username}")
+	public ResponseEntity<?> deletePlayer(@PathVariable(value="username")String userName)
 	{
 		if(americanFootballRepository.findByPlayerUsername(userName) == null)
 		{

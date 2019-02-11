@@ -8,5 +8,5 @@ import com.ashworth.william.springboot.database.americanFootball.americanFootbal
 @Repository
 public interface RepositoryCoach extends JpaRepository<AmericanFootballSpringBootModelCoach, Long>
 {
-	AmericanFootballSpringBootModelCoach findByCoachUsername(String coachUsername);
+
 }

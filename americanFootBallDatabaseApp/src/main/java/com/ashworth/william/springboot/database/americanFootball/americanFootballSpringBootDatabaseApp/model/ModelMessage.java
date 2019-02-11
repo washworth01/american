@@ -25,15 +25,13 @@ public class ModelMessage implements Serializable
 {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
-	private Long message_id;
+	private Long messageId;
 	
-	@ManyToOne
-	@JoinColumn
-	private AmericanFootballSpringBootModelUser sender;
+	@NotBlank
+	private Long sender;
 	
-	@ManyToOne
-	@JoinColumn
-	private AmericanFootballSpringBootModelUser receiver;
+	@NotBlank
+	private Long receiver;
 	
 	@NotBlank
 	@Column
@@ -44,51 +42,44 @@ public class ModelMessage implements Serializable
 		
 	}
 	
-	public ModelMessage(AmericanFootballSpringBootModelUser sender, AmericanFootballSpringBootModelUser receiver, String message)
+	public ModelMessage(Long sender, Long receiver, String message)
 	{
 		this.sender = sender;
 		this.receiver = receiver;
 		this.message = message;
 	}
 
-	public Long getMessage_id() 
-	{
-		return message_id;
+	public Long getMessageId() {
+		return messageId;
 	}
 
-	public void setMessage_id(Long message_id) 
-	{
-		this.message_id = message_id;
+	public void setMessageId(Long messageId) {
+		this.messageId = messageId;
 	}
 
-	public AmericanFootballSpringBootModelUser getSender() 
-	{
+	public Long getSender() {
 		return sender;
 	}
 
-	public void setSender(AmericanFootballSpringBootModelUser sender) 
-	{
+	public void setSender(Long sender) {
 		this.sender = sender;
 	}
 
-	public AmericanFootballSpringBootModelUser getReceiver() 
-	{
+	public Long getReceiver() {
 		return receiver;
 	}
 
-	public void setReceiver(AmericanFootballSpringBootModelUser receiver) 
-	{
+	public void setReceiver(Long receiver) {
 		this.receiver = receiver;
 	}
 
-	public String getMessage() 
-	{
+	public String getMessage() {
 		return message;
 	}
 
-	public void setMessage(String message)
-	{
+	public void setMessage(String message) {
 		this.message = message;
 	}
+
 	
 }

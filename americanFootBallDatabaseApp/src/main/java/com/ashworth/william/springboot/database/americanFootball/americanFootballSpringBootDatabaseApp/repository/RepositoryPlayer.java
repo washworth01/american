@@ -8,5 +8,5 @@ import com.ashworth.william.springboot.database.americanFootball.americanFootbal
 @Repository
 public interface RepositoryPlayer extends JpaRepository<AmericanFootballSpringBootModelPlayer, Long>
 {
-	AmericanFootballSpringBootModelPlayer findByPlayerUsername(String playerUsername);
+
 }

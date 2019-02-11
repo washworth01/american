@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ashworth.william.springboot.database.americanFootball.americanFootballSpringBootDatabaseApp.exception.ResourceNotFoundException;
 import com.ashworth.william.springboot.database.americanFootball.americanFootballSpringBootDatabaseApp.model.ModelMessage;
-import com.ashworth.william.springboot.database.americanFootball.americanFootballSpringBootDatabaseApp.model.ModelSchedule;
 import com.ashworth.william.springboot.database.americanFootball.americanFootballSpringBootDatabaseApp.repository.RepositoryMessage;
 
 @CrossOrigin
@@ -34,6 +33,12 @@ public class ControllerMessage
 	{
 		return americanFootballRepository.save(mSDM);
 	}
+	
+	@GetMapping("/message")
+	public List<ModelMessage> getAllMessages()
+	{
+		return americanFootballRepository.findAll();
+	}
 		
 	@GetMapping("/message/{id}")
 	public ModelMessage getMessage(@PathVariable(value = "id")Long id)
@@ -46,7 +51,7 @@ public class ControllerMessage
 	{	
 		ModelMessage mSDM = americanFootballRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("ModelMessage", "id", id));
 		
-		mSDM.setMessage_id(messageDetails.getMessage_id());
+		mSDM.setMessageId(messageDetails.getMessageId());
 		mSDM.setSender(messageDetails.getSender());
 		mSDM.setReceiver(messageDetails.getReceiver());
 		mSDM.setMessage(messageDetails.getMessage());
