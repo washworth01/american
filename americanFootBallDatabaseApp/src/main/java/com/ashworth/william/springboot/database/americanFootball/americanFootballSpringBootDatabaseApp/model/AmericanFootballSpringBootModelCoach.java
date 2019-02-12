@@ -20,6 +20,10 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import lombok.Data;
+
+
+
 @Entity
 @Table(name = "coach")
 @EntityListeners(AuditingEntityListener.class)
@@ -29,33 +33,31 @@ public class AmericanFootballSpringBootModelCoach
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
 	private Long coachid;
+
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name = "userid")
+	private AmericanFootballSpringBootModelUser user;
 		
 	@NotBlank
 	private String trainingSpecialisation;
 	
-	@OneToOne(fetch = FetchType.EAGER, optional=false)
-	@JoinColumn(name = "userid", nullable=false)
-	@JsonIgnore
-	private AmericanFootballSpringBootModelUser user;
-
 	public AmericanFootballSpringBootModelCoach()
 	{
 		
 	}
 
-	public AmericanFootballSpringBootModelCoach(Long coachid, @NotBlank String trainingSpecialisation,
+	public AmericanFootballSpringBootModelCoach(Long coachid, String trainingSpecialisation,
 	AmericanFootballSpringBootModelUser user) {
 		super();
-		this.coachid = coachid;
 		this.trainingSpecialisation = trainingSpecialisation;
 		this.user = user;
 	}
 
-	public Long getCoachId() {
+	public Long getCoachid() {
 		return coachid;
 	}
 
-	public void setCoachId(Long coachid) {
+	public void setCoachid(Long coachid) {
 		this.coachid = coachid;
 	}
 
@@ -67,4 +69,12 @@ public class AmericanFootballSpringBootModelCoach
 		this.trainingSpecialisation = trainingSpecialisation;
 	}
 
+	public AmericanFootballSpringBootModelUser getUser() {
+		return user;
+	}
+
+	public void setUser(AmericanFootballSpringBootModelUser user) {
+		this.user = user;
+	}
+	
 }

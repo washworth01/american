@@ -11,6 +11,7 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
@@ -26,7 +27,13 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class ModelSchedule implements Serializable
 {
 	@Id
-	private Long teamId;
+	@Column(name = "teamid")
+	private Long teamid;
+	
+	@MapsId
+	@OneToOne(mappedBy = "modelSchedule")
+	@JoinColumn(name = "teamid")
+	private AmericanFootballSpringBootModelTeamDetail team;
 	
 	@Column
 	@NotBlank
@@ -48,15 +55,15 @@ public class ModelSchedule implements Serializable
 
 	
 	
-	public ModelSchedule(Long teamId, @NotBlank String day) {
+	public ModelSchedule(Long teamid, @NotBlank String day) {
 		super();
-		this.teamId = teamId;
+		this.teamid = teamid;
 		this.day = day;
 	}
 
-	public ModelSchedule(Long teamId, @NotBlank String day, Time startTime, Time endTime, String description) {
+	public ModelSchedule(Long teamid, @NotBlank String day, Time startTime, Time endTime, String description) {
 		super();
-		this.teamId = teamId;
+		this.teamid = teamid;
 		this.day = day;
 		this.startTime = startTime;
 		this.endTime = endTime;
@@ -64,11 +71,11 @@ public class ModelSchedule implements Serializable
 	}
 
 	public Long getTeamId() {
-		return teamId;
+		return teamid;
 	}
 
-	public void setTeamId(Long teamId) {
-		this.teamId = teamId;
+	public void setTeamId(Long teamid) {
+		this.teamid = teamid;
 	}
 
 	public String getDay() {

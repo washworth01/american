@@ -36,16 +36,11 @@ public class ControllerSchedule
 		return americanFootballRepository.save(sSDM);
 	}
 		
-//	@GetMapping("/team/schedule/{team_name}")
-//	public ModelSchedule getCoach(@PathVariable(value = "team_name")String teamName)
-//	{
-//		if(americanFootballRepository.findByTeamName(teamName) == null)
-//		{
-//			throw new ResourceNotFoundException("AmericanFootballSpringBootModelCoach", "team_name", teamName);
-//		}
-//		
-//		return americanFootballRepository.findByTeamName(teamName);
-//	}
+	@GetMapping("/team/{teamid}/schedule")
+	public ModelSchedule getCoach(@PathVariable(value = "teamid")Long teamid)
+	{	
+		return americanFootballRepository.findById(teamid).orElseThrow(()-> new ResourceNotFoundException("AmericanFootballSpringBootModelUser", "id", teamid));
+	}
 //	
 //	@PutMapping("/team/schedule/{team_name}")
 //	public ModelSchedule updateCoach(@PathVariable(value = "team_name")String teamName, @Valid @ RequestBody ModelSchedule teamDetails)

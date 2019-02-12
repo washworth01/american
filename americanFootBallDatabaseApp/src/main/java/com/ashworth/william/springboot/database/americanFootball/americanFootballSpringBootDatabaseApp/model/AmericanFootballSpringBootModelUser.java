@@ -20,14 +20,11 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import lombok.*;
 
 @Entity
 @Table(name = "user")
 @EntityListeners(AuditingEntityListener.class)
 @JsonIgnoreProperties(value = {"creationDate", "lastModified"}, allowGetters = true)
-@DynamicInsert(true)
-@DynamicUpdate(true)
 public class AmericanFootballSpringBootModelUser
 {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -58,14 +55,8 @@ public class AmericanFootballSpringBootModelUser
 		
 	@ManyToOne(fetch = FetchType.EAGER, optional =false)
 	@JoinColumn(name = "contactdetailsid", nullable = false)
-	@JsonIgnore
 	private AmericanFootballSpringBootModelContactDetails contactdetails;
-		
-	
-	@OneToOne(mappedBy = "user")
-	@JsonIgnore
-	private AmericanFootballSpringBootModelCoach coach;
-	
+			
 	public AmericanFootballSpringBootModelUser()
 	{
 		
@@ -84,7 +75,6 @@ public class AmericanFootballSpringBootModelUser
 		this.lastName = lastName;
 		this.dateOfBirth = dateOfBirth;
 		this.description = description;
-		this.coach = coach;
 	}
 
 	public long getUserid() {
@@ -158,14 +148,6 @@ public class AmericanFootballSpringBootModelUser
 	public void setContactdetails(AmericanFootballSpringBootModelContactDetails contactdetails) {
 		this.contactdetails = contactdetails;
 	}
-
-	public AmericanFootballSpringBootModelCoach getCoach() {
-		return coach;
-	}
-
-	public void setCoach(AmericanFootballSpringBootModelCoach coach) {
-		this.coach = coach;
-	}	
 	
 }
 	
