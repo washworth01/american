@@ -52,6 +52,7 @@ public class ModelMessage
 	
 	public ModelMessage(AmericanFootballSpringBootModelUser userid, AmericanFootballSpringBootModelUser userid1, String message)
 	{
+		super();
 		this.userid = userid;
 		this.userid1 = userid1;
 		this.message = message;

@@ -24,24 +24,18 @@ public class AmericanFootballSpringBootModelContactDetails
 	@Id
 	private long contactdetailsid;
 	
-	@NotNull
 	private Integer houseNumber;
 	
-	@NotNull
 	private String addressLine1;
 	
 	private String addressLine2;
 	
-	@NotNull
 	private String city;
 	
-	@NotNull
 	private String county;
 	
-	@NotNull
 	private String postcode;
 	
-	@NotNull
 	private String phoneNumber;
 
 	public AmericanFootballSpringBootModelContactDetails()
@@ -49,9 +43,9 @@ public class AmericanFootballSpringBootModelContactDetails
 		
 	}
 
-	public AmericanFootballSpringBootModelContactDetails(@NotBlank Integer houseNumber,
-			@NotBlank String addressLine1, @NotBlank String city, @NotBlank String county, @NotBlank String postcode,
-			@NotBlank String phoneNumber) {
+	public AmericanFootballSpringBootModelContactDetails( String postcode, Integer houseNumber,
+			 String addressLine1, String city, String county,
+			 String phoneNumber) {
 		super();
 		this.houseNumber = houseNumber;
 		this.addressLine1 = addressLine1;
@@ -61,16 +55,16 @@ public class AmericanFootballSpringBootModelContactDetails
 		this.phoneNumber = phoneNumber;
 	}
 
-	public AmericanFootballSpringBootModelContactDetails(@NotBlank Integer houseNumber,
-			@NotBlank String addressLine1, String addressLine2, @NotBlank String city, @NotBlank String county,
-			@NotBlank String postcode, @NotBlank String phoneNumber) {
+	public AmericanFootballSpringBootModelContactDetails( String postcode, Integer houseNumber,
+			 String addressLine1, String addressLine2,  String city, String county,
+			 String phoneNumber) {
 		super();
+		this.postcode = postcode;
 		this.houseNumber = houseNumber;
 		this.addressLine1 = addressLine1;
 		this.addressLine2 = addressLine2;
 		this.city = city;
-		this.county = county;
-		this.postcode = postcode;
+		this.county = county; 
 		this.phoneNumber = phoneNumber;
 	}
 

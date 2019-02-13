@@ -20,10 +20,6 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import lombok.Data;
-
-
-
 @Entity
 @Table(name = "coach")
 @EntityListeners(AuditingEntityListener.class)

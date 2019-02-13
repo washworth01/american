@@ -25,49 +25,46 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Table(name = "user")
 @EntityListeners(AuditingEntityListener.class)
 @JsonIgnoreProperties(value = {"creationDate", "lastModified"}, allowGetters = true)
-public class AmericanFootballSpringBootModelUser
+public class AmericanFootballSpringBootModelUser implements Serializable
 {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
 	private long userid;
 	
-	@NotNull
+	@NotBlank
 	private String username;
 	
-	@NotNull
+	@NotBlank
 	private String password;
 	
-	@NotNull
+	@NotBlank
 	private String emailAddress;
 	
-	@NotNull
+	@NotBlank
 	private String firstName;
 	
-	@NotNull
+	@NotBlank
 	private String lastName;
 	
-	@NotNull
+	@NotBlank
 	@JsonFormat(pattern="yyyy-MM-dd")
-    private Date dateOfBirth; 
-	
-	@NotNull
+    private String dateOfBirth; 
+
 	private String description;
 		
-	@ManyToOne(fetch = FetchType.EAGER, optional =false)
-	@JoinColumn(name = "contactdetailsid", nullable = false)
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "contactdetailsid")
 	private AmericanFootballSpringBootModelContactDetails contactdetails;
 			
 	public AmericanFootballSpringBootModelUser()
 	{
 		
-	}
+	} 
 
-	public AmericanFootballSpringBootModelUser(@NotBlank String username, @NotBlank String password,
-			@NotBlank String emailAddress, @NotBlank String firstName, @NotBlank String lastName,
-			@NotBlank Date dateOfBirth, @NotBlank String description, @NotBlank AmericanFootballSpringBootModelContactDetails contactdetails,
-			AmericanFootballSpringBootModelCoach coach) {
+	public AmericanFootballSpringBootModelUser( String username, String password,
+			 String emailAddress,  String firstName,  String lastName,
+			 String dateOfBirth, String description, AmericanFootballSpringBootModelContactDetails contactdetails) {
 		super();
-		this.contactdetails = contactdetails;
 		this.username = username;
 		this.password = password;
 		this.emailAddress = emailAddress;
@@ -75,7 +72,23 @@ public class AmericanFootballSpringBootModelUser
 		this.lastName = lastName;
 		this.dateOfBirth = dateOfBirth;
 		this.description = description;
+		this.contactdetails = contactdetails;
 	}
+	
+	public AmericanFootballSpringBootModelUser( String username,  String password,
+			 String emailAddress,  String firstName,  String lastName,
+			 String dateOfBirth, AmericanFootballSpringBootModelContactDetails contactdetails) {
+		super();
+		this.username = username;
+		this.password = password;
+		this.emailAddress = emailAddress;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.dateOfBirth = dateOfBirth;
+		this.contactdetails = contactdetails;
+	}
+	
+	
 
 	public long getUserid() {
 		return userid;
@@ -117,7 +130,7 @@ public class AmericanFootballSpringBootModelUser
 		this.firstName = firstName;
 	}
 
-	public String getLastName() {
+	public String getLastName() { 
 		return lastName;
 	}
 
@@ -125,11 +138,11 @@ public class AmericanFootballSpringBootModelUser
 		this.lastName = lastName;
 	}
 
-	public Date getDateOfBirth() {
+	public String getDateOfBirth() {
 		return dateOfBirth;
 	}
 
-	public void setDateOfBirth(Date dateOfBirth) {
+	public void setDateOfBirth(String dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
 	}
 

@@ -58,6 +58,7 @@ public class AmericanFootballSpringBootControllerUser
 		uSDM.setEmailAddress(userDetails.getEmailAddress());
 		uSDM.setDateOfBirth(userDetails.getDateOfBirth());
 		uSDM.setDescription(userDetails.getDescription());
+		uSDM.setContactdetails(userDetails.getContactdetails());
 
 		AmericanFootballSpringBootModelUser updateData = americanFootballRepository.save(uSDM);
 		return updateData;
@@ -71,4 +72,5 @@ public class AmericanFootballSpringBootControllerUser
 		americanFootballRepository.delete(uSDM);
 		return ResponseEntity.ok().build();
 	}
+	
 }
