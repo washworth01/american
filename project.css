@@ -1,0 +1,187 @@
+body {
+    background-color: #b4b3b3;
+}
+
+.user-detail {
+    border: 3px soild black;
+}
+
+.user-description {
+    position: relative;
+    height: 200px;
+    width: 50%;
+    border: 3px solid black;
+    overflow: scroll;
+    display: inline-block;
+    left: 50%;
+    margin-left: -25%;
+}
+
+.team.details {
+    position: relative;
+    overflow: hidden;
+}
+
+.team-details ul {
+    padding: 0;
+    list-style-type: none;
+}
+
+.team-details li {
+    position: relative;
+    height:200px;
+    width: 33%;
+    background-color: white;
+    border: 1px solid black;
+    overflow: scroll;
+    text-align: center;
+    float: left;
+}
+
+.button.link {
+     background:none;
+     border:none; 
+}
+
+.team-details tr {
+    text-align: center;
+}
+
+.page-header {
+    position: relative;
+    text-align: center;
+    color: black;
+    background-color: white;
+    border: 3px solid white;
+    /* width: 100%;
+    height: 500px; */
+    background-repeat: no-repeat;
+    /* background-image: url("LineOfSkrimmage.jpg"); */
+    object-fit: cover;
+}
+
+.page-header img{
+    width: 100%;
+    object-fit: cover;
+    height: 50%;
+}
+
+.navbar {
+    overflow: hidden;
+    position: sticky;
+    width: 100%;
+    height: 65px;
+    background-color:#15161a;
+}
+
+.navbar ul {
+    list-style-type: none;
+}
+
+.navbar li {
+    display: inline-block;
+    position: relative;
+    padding: 25px;
+    top: -20px;
+    text-decoration: none;
+    background-color: #15161a; 
+    text-align: center;
+    color: white;
+}
+
+.dropdown-content {
+    display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  overflow: auto;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a{
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.navbar li:hover {
+    background-color: white;
+    color: black;
+}
+
+.search-functions{
+    background-color:#EEDA22;
+    float: left;
+    width: 100%;
+    border: 3px solid #15161a
+}
+
+.search-functions li {
+    display: inline;
+    position: relative;
+    left: 70vmax;
+}
+
+.search-functions input [type=text]{
+    position: relative;
+}
+
+.search-functions button {
+    position: relative;
+    padding: 2px;
+    top: 0px;
+}
+
+.search-filters {
+    float: left;
+    position: sticky;
+    background-color:#EEDA22;
+    border: 3px solid white;
+    width: 250px;
+}
+
+.search-filters h2 {
+    font-size: 20px;
+}
+
+.search-filters li{
+    display: inline;
+}
+
+.user-table{
+    z-index: -1;
+    overflow: visible;
+}
+
+.user-table table {
+    border-collapse: collapse;
+    width: 80%;
+    overflow:hidden;
+    float:right;
+    min-width: 80%;
+}
+
+.user-table th {
+    text-align: center;
+    padding: 15px;
+}
+
+.user-table td {
+    text-align: center;
+    padding: 15px;
+}
+
+.user-table tr:nth-child(odd) {
+    background-color: black;
+    color: white;
+}
+
+.user-table tr:nth-child(even) {
+    background-color: white;
+}
+
+.bg-dark {
+    background-color: #15161a !important;
+}
