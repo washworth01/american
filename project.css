@@ -11,10 +11,38 @@ body {
     height: 200px;
     width: 50%;
     border: 3px solid black;
+    background-color: white;
     overflow: scroll;
     display: inline-block;
     left: 50%;
     margin-left: -25%;
+}
+
+.user-description table {
+    border-collapse: collapse;
+    width: 100%;
+    overflow:hidden;
+    float:right;
+}
+
+.user-description th {
+    text-align: center;
+    padding: 15px;
+}
+
+.user-description td {
+    text-align: center;
+    border: 3px solid grey;
+    padding: 15px;
+}
+
+.user-description tr:nth-child(odd) {
+    background-color: black;
+    color: white;
+}
+
+.user-description tr:nth-child(even) {
+    background-color: white;
 }
 
 .team.details {
@@ -63,64 +91,96 @@ body {
 }
 
 .navbar {
-    overflow: hidden;
-    position: sticky;
-    width: 100%;
-    height: 65px;
-    background-color:#15161a;
+  color: white;
+  padding:1;
 }
 
 .navbar ul {
-
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #15161a;
 }
 
 .navbar li {
     display: inline;
+  }
+
+.inputBox {
+    float:right;
+    margin-right: 200px;
 }
 
 .navbar a {
-    display: block;
+    display: inline-block;
     color: white;
     text-align: center;
-    padding: 25px 25px;
+    padding: 14px 16px;
     text-decoration: none;
 }
 
+.vertical-navbar li {
+    display: inline;
+  }
+
+.vertical-navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.vertical-navbar li button {
+    display: inline-block;
+    color: #15161a;
+    padding: 25px 25px;
+    text-decoration: none;    
+  }
+
+.vertical-navbar li button:hover {
+    background-color: #555;
+    color: white;
+  }
+
 .dropdown-content {
     display: none;
-  position: absolute;
-  background-color: #f1f1f1;
-  min-width: 160px;
-  overflow: auto;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 12px 16px;
+    z-index: 1;
 }
 
 .page-form {
-    margin: 100px;
-    border: 1px solid black;
+    margin-left: 500px;
+    margin-right: 500px;
+    border: 1px solid #15161a;
+    background-color: white;
 }
 
-.page-form h2 {
+.fields h2 {
     display: inline;
 }
 
-.page-form ul {
+.fields ul {
     list-style-type: none;
 }
 
-.page-form input [type=text] {
+.fields input [type=text] {
     float: right;
-    left: 100px;
+    left: 400px;
 }
 
-.page-form input [type=button] {
-    float: left;
-    left: 100px;
+.fields input [type=button] {
+    position: relative;
+    float: right; 
+    padding: 20px;
+    border-radius: 15px
 }
 
-.dropdown-content a{
-    color: black;
+.fields a{
+    color: #15161a;
     padding: 12px 16px;
     text-decoration: none;
     display: block;
@@ -128,7 +188,7 @@ body {
 
 .navbar li:hover {
     background-color: white;
-    color: black;
+    color: #15161a;
 }
 
 .search-functions{
@@ -146,6 +206,7 @@ body {
 
 .search-functions input [type=text]{
     position: relative;
+    padding-right: 100px;
 }
 
 .search-functions button {
@@ -154,16 +215,23 @@ body {
     top: 0px;
 }
 
+.search-functions {
+    float: right;
+}
+
 .search-filters {
     float: left;
     position: sticky;
     background-color:#EEDA22;
     border: 3px solid white;
     width: 250px;
+    margin:0;
 }
 
 .search-filters h2 {
     font-size: 20px;
+    text-align: center;
+    float: middle;
 }
 
 .search-filters li{
@@ -194,7 +262,7 @@ body {
 }
 
 .user-table tr:nth-child(odd) {
-    background-color: black;
+    background-color: #15161a;
     color: white;
 }
 
@@ -221,6 +289,18 @@ body {
 
 .team-details tr {
     text-align: center;
+}
+
+.change-search {
+    background-color: #15161a;
+    padding: 1px;
+    color: white;
+    float: middle;
+    text-align: center;
+}
+
+.change-search ul {
+    list-style-type: none;
 }
 
 .bg-dark {

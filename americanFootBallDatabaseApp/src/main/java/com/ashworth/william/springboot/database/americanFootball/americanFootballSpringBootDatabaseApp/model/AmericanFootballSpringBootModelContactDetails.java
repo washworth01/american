@@ -42,7 +42,7 @@ public class AmericanFootballSpringBootModelContactDetails
 	{
 		
 	}
-
+ 
 	public AmericanFootballSpringBootModelContactDetails( String postcode, Integer houseNumber,
 			 String addressLine1, String city, String county,
 			 String phoneNumber) {

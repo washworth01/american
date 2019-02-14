@@ -30,7 +30,7 @@ public class AmericanFootballSpringBootModelCoach implements Serializable
 	@Id
 	private Long coachid;
 
-	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
 	@JoinColumn(name = "userid")
 	private AmericanFootballSpringBootModelUser user;
 		
@@ -42,11 +42,10 @@ public class AmericanFootballSpringBootModelCoach implements Serializable
 		
 	}
 
-	public AmericanFootballSpringBootModelCoach(Long coachid, String trainingSpecialisation,
+	public AmericanFootballSpringBootModelCoach(String trainingSpecialisation,
 	AmericanFootballSpringBootModelUser user) {
-		super();
 		this.trainingSpecialisation = trainingSpecialisation;
-		this.user = user;
+		this.user = user; 
 	}
 
 	public Long getCoachid() {

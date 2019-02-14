@@ -5,7 +5,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Players</title>
+        <title>Search</title>
 
         <link href="project.css" rel="stylesheet">
     </head>
@@ -16,19 +16,14 @@
                 <li id="home">
                     <a href="index.html">Home</a>
                 </li>
-                <li id="search"><a id="searchLink" href=searchpage.html>Search</a>
-                    <div id="myDropdown" class="dropdown-content">
-                      <a href="searchpage">All</a>
-                      <a href="#searchpage">Player</a>
-                      <a href="#searchpage">Coach</a>
-                </div></li>
+                <li id="search"><a id="searchLink" href=searchpage.html>Search</a></li>
                 <li id="account"><a id="accountLink" href=accountPage.html>Account</a></li>
                 <li id="login"><a id="loginLink" href=#></a>Login</li>
             </ul>
         </div>
         <div class="page-header">
             <img src="LineOfSkrimmage.jpg" alt="Skrimmage"/>
-            <h1>Search for Players</h1>
+            <h1 id="searchTitle">Search for Players</h1>
         </div>
         <div class="change-search">
             <ul>
@@ -44,13 +39,14 @@
         </div>
         <div class="search-functions">
             <ul>
-                <li id="searchBar"><input id="searchRequest" type=text></input></li>
-                <li id="searchButton"><button id="searchSend">Search</button></li>
+                <li id="searchBar"><input id="searchRequest" type=text onchange="searchRequest();"></input></li>
+                <li id="searchButton"><button id="searchSend"  onclick="searchRequest();">Search</button></li>
+                <li id="changeFilter">
             </ul>
         </div>
         <div class="search-filters">
             <ul>
-                <h2>Player Role</h2>
+                <h2 id="roleFilter">Player Role</h2>
                     <li>
                         <select id = "roleDropDown" >
                             <option value="All">All</option>
@@ -69,11 +65,6 @@
         <div class="user-table">
             <table id ="searchTable"></table>
         </div>
-    <footer>
-        <div class = "footerText">
-            <p>This is a Placeholder</p>
-        </div>
-    </footer>
         <script src=searchpage.js></script>
     </body>
 </html>

@@ -27,7 +27,7 @@ public class AmericanFootballSpringBootModelPlayer implements Serializable
 	@Id
 	private Long playerid;
 	
-	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToOne(cascade = {CascadeType.MERGE}, fetch = FetchType.EAGER)
 	@JoinColumn(name = "userid")
 	private AmericanFootballSpringBootModelUser user;
 		
@@ -37,7 +37,7 @@ public class AmericanFootballSpringBootModelPlayer implements Serializable
 	@NotBlank
 	private String preferedPosition;
 	
-	@ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE}, mappedBy = "players")
+	@ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE}, mappedBy = "players")
 	private Collection<AmericanFootballSpringBootModelTeamDetail> teams = new LinkedHashSet<>();
 	
 	public AmericanFootballSpringBootModelPlayer()

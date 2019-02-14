@@ -16,6 +16,8 @@ userCoachRequest.send();
 
 let coachJsonString = userCoachRequest.response;
 
+let playerJsonString = playerRequest.response;
+
 let userType = 1;
 let table = "";
 let pageText = "";
@@ -23,7 +25,7 @@ let page = 1;
 let baseTable = "";
 
 playerRequest.onload = function() {
-   let playerJsonString = playerRequest.response;
+   playerJsonString = playerRequest.response;
    baseTable = playerJsonString;
    loadTable(baseTable);
 }
@@ -68,7 +70,7 @@ function loadTable(newTable){
             pageText += "<tr><td><button class='link' value='"+table[i].user.userid+"' onclick=seeUser(this.value)>" + table[i].user.username + "</button></td>"
             pageText += "<td>" + table[i].trainingSpecialisation + "</td>"
             pageText += "<td>" + table[i].user.description+ "</td>"
-            pageText += "<td><button id ='" +i+ "' value='"+table[i].user.userid+"' onclick=sendRequestToJoin(this.value)>remove</td></tr>"
+            pageText += "<td><button id ='" +i+ "' value='"+table[i].user.userid+"' onclick=sendRequestToJoin(this.value)>message</td></tr>"
             if(counter == 20){
                 break
             }
@@ -82,11 +84,16 @@ function changeUserType(user){
     userType = user;
     if(user == 1){
         jsonString = playerJsonString;
+        document.getElementById("roleFilter").innerHTML = "Player Role"
+        document.getElementById("searchTitle").innerHTML = "Search for Players"
     }
     else{
         jsonString = coachJsonString;
+        document.getElementById("roleFilter").innerHTML = "Coach Specialisation"
+        document.getElementById("searchTitle").innerHTML = "Search for Coaches"
         console.log(userType)
     }
+
 
     pageText = "";
     page = 1;
@@ -97,7 +104,23 @@ function changeUserType(user){
 }
 
 function searchRequest(){
-    
+    let input = document.getElementById("playerPositionFilter").value;
+	pageText = "";
+	let searchTable = [];
+    let counter = 0;
+    for (i in table){
+        if (table[i].username === input){
+			searchTable[counter] = table[i];
+			counter++;
+			}
+        }
+	if (counter == 0){
+        pageText = "Sorry! We couldn't find what you were looking for."
+        document.getElementById("searchTable").innerHTML = pageText;
+    }
+    else{
+        loadTable(searchTable);
+    }
 }
     
 function findByRole(testval){
@@ -110,7 +133,7 @@ function findByRole(testval){
     if (dropdown === "All"){
         loadTable(baseTable);
     }
-    else{
+    else if (userType == 1){
         for (i in table){
             console.log("Inside Loop");
             if (dropdown === table[i].preferedRole){
@@ -121,6 +144,22 @@ function findByRole(testval){
         if (counter == 0){
             pageText = "Sorry! We couldn't find what you were looking for."
         }
+        document.getElementById("searchTable").innerHTML = pageText;
+    }
+    else{
+        for (i in table){
+            console.log("Inside Loop");
+            console.log(table[i])
+            if (dropdown === table[i].trainingSpecialisation){
+                roleTable[counter] = table[i];
+                counter++;
+                }
+            }
+        if (counter == 0){
+            pageText = "Sorry! We couldn't find what you were looking for."
+        }
+        document.getElementById("searchTable").innerHTML = pageText;
+        
         loadTable(roleTable);
     }
 }
@@ -161,7 +200,8 @@ function seeUser(id){
     userRequest.send();
     
     let userJsonString = userRequest.response;
-
+    console.log(userJsonString);
+    console.log(pageText)
     userRequest.onload = function() {
         userJsonString = userRequest.response;
     }

@@ -2,6 +2,7 @@ package com.ashworth.william.springboot.database.americanFootball.americanFootba
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
@@ -31,12 +32,12 @@ public class ModelMessage
 	@Id
 	private Long messageid;
 	
-	@ManyToOne(fetch = FetchType.EAGER, optional= false)
+	@ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE}, optional= false)
 	@JoinColumn(name = "userid", nullable=false)
 	@OnDelete(action = OnDeleteAction.NO_ACTION)
 	private AmericanFootballSpringBootModelUser userid;
 	
-	@ManyToOne(fetch = FetchType.EAGER, optional= false)
+	@ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE}, optional= false)
 	@JoinColumn(name = "userid1", nullable=false)
 	@OnDelete(action = OnDeleteAction.NO_ACTION)
 	private AmericanFootballSpringBootModelUser userid1;

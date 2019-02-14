@@ -25,7 +25,7 @@ import com.ashworth.william.springboot.database.americanFootball.americanFootbal
 @RequestMapping("/api")
 public class ControllerCoach 
 {
-	@Autowired
+	@Autowired 
 	RepositoryCoach americanFootballRepository;
 	
 	@PostMapping("/coach")

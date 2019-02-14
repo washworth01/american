@@ -40,27 +40,17 @@ public class ControllerContactDetails
 		return americanFootballRepository.findAll();
 	}
 	
-	@GetMapping("/contact/{postcode}/{house_number}")
-	public AmericanFootballSpringBootModelContactDetails getContactDetails(@PathVariable(value = "postcode")String postcode, @PathVariable(value = "house_number") String houseNumber)
-	{
-		if(americanFootballRepository.findByPostcodeAndHouseNumber(postcode, houseNumber) == null)
-		{
-			throw new ResourceNotFoundException("AmericanFootballSpringBootModelContactDetails", "postcode", postcode);
-		}
-		
-		return americanFootballRepository.findByPostcodeAndHouseNumber(postcode, houseNumber);
+	@GetMapping("/contact/{id}")
+	public AmericanFootballSpringBootModelContactDetails getContactDetails(@PathVariable(value = "id")Long id)
+	{	
+		return americanFootballRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("AmericanFootballSpringBootModelContactDetails", "id", id));
 	}
 	
-	@PutMapping("/contact/{postcode}/{house_number}")
-	public AmericanFootballSpringBootModelContactDetails updateContactDetails(@PathVariable(value = "postcode")String postcode, @PathVariable(value = "house_number") String houseNumber,
+	@PutMapping("/contact/{id}")
+	public AmericanFootballSpringBootModelContactDetails updateContactDetails(@PathVariable(value = "id")Long id,
 			@Valid @RequestBody AmericanFootballSpringBootModelContactDetails contactDetails)
 	{
-		if(americanFootballRepository.findByPostcodeAndHouseNumber(postcode, houseNumber) == null)
-		{
-			throw new ResourceNotFoundException("AmericanFootballSpringBootModelContactDetails", "postcode", postcode);
-		}
-		
-		AmericanFootballSpringBootModelContactDetails cDSDM = americanFootballRepository.findByPostcodeAndHouseNumber(postcode, houseNumber);
+		AmericanFootballSpringBootModelContactDetails cDSDM = americanFootballRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("AmericanFootballSpringBootModelContactDetails", "id", id));
 		
 		cDSDM.setPostcode(contactDetails.getPostcode());
 		cDSDM.setHouseNumber(contactDetails.getHouseNumber());
@@ -74,15 +64,11 @@ public class ControllerContactDetails
 		return updateData;
 	}
 	
-	@DeleteMapping("/contact/{postcode}/{house_number}")
-	public ResponseEntity<?> deleteContactDetails(@PathVariable(value = "postcode")String postcode, @PathVariable(value = "house_number") String houseNumber)
+	@DeleteMapping("/contact/{id}")
+	public ResponseEntity<?> deleteContactDetails(@PathVariable(value = "id")Long id)
 	{		
-		if(americanFootballRepository.findByPostcodeAndHouseNumber(postcode, houseNumber) == null)
-		{
-			throw new ResourceNotFoundException("AmericanFootballSpringBootModelContactDetails", "postcode", postcode);
-		}
 		
-		AmericanFootballSpringBootModelContactDetails cDSDM = americanFootballRepository.findByPostcodeAndHouseNumber(postcode, houseNumber);
+		AmericanFootballSpringBootModelContactDetails cDSDM = americanFootballRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("AmericanFootballSpringBootModelContactDetails", "id", id));
 		
 		americanFootballRepository.delete(cDSDM);
 		return ResponseEntity.ok().build();

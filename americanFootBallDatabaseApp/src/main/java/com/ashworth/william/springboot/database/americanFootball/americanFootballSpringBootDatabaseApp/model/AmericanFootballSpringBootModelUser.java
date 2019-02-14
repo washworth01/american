@@ -52,7 +52,7 @@ public class AmericanFootballSpringBootModelUser implements Serializable
 
 	private String description;
 		
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
 	@JoinColumn(name = "contactdetailsid")
 	private AmericanFootballSpringBootModelContactDetails contactdetails;
 			
@@ -163,4 +163,3 @@ public class AmericanFootballSpringBootModelUser implements Serializable
 	}
 	
 }
-	

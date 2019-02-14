@@ -31,7 +31,7 @@ public class ModelSchedule implements Serializable
 	private Long teamid;
 	
 	@MapsId
-	@OneToOne(mappedBy = "modelSchedule")
+	@OneToOne(mappedBy = "modelSchedule", cascade = CascadeType.MERGE)
 	@JoinColumn(name = "teamid")
 	private AmericanFootballSpringBootModelTeamDetail team;
 	

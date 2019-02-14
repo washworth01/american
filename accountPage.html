@@ -15,11 +15,18 @@
             </ul>
         </div>
         <div class="page-header">
-            <h1>[Alterable Field for Username]</h1>
+            <h1 id = "usernameTitle">[Alterable Field for Username]</h1>
+            <div class="vertical-navbar">
+                    <ul>
+                        <li id="description"><button id="getSchedule" onclick="loadDescription()">Description</a></li>
+                        <li id="schedule"><button id="getSchedule" onclick="loadSchedule()">Schedule</a></li>
+                        <li id="messages"><button id="getMessages" onclick="loadMessages()">Messages</a></li>
+                    </ul>
+                </div>
         </div>
         <div class="user-detail">
             <div class="user-description">
-                <p></p>
+                <table id="dynamic-data"></table>
             </div>
         <div><br>
         <div class="team-details">

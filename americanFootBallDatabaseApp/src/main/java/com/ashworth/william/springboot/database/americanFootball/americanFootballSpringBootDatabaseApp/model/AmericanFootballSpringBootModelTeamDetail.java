@@ -48,21 +48,21 @@ public class AmericanFootballSpringBootModelTeamDetail
 	@NotBlank
 	private String teamName;
 
-	@ManyToMany(fetch =  FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+	@ManyToMany(fetch =  FetchType.EAGER, cascade = {CascadeType.MERGE})
 	@JoinTable(name = "player_team", joinColumns = {@JoinColumn(name = "teamid")},
 		inverseJoinColumns = {@JoinColumn(name = "playerid")})
 	@JsonIgnore
 	private Collection<AmericanFootballSpringBootModelPlayer> players = new LinkedHashSet<>();
 		
-	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
 	@JoinColumn(name = "coachid")
 	private AmericanFootballSpringBootModelCoach coach;
 	
-	@OneToOne (cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToOne (cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
 	@JoinColumn(name = "contactdetailsid")
 	private AmericanFootballSpringBootModelContactDetails contactDetails;
 	
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.MERGE)
 	@PrimaryKeyJoinColumn
 	private ModelSchedule modelSchedule; 
 	
@@ -151,6 +151,3 @@ public class AmericanFootballSpringBootModelTeamDetail
 	}
 
 }
-
-	
-	
