@@ -37,7 +37,7 @@ public class ModelSchedule implements Serializable
 	
 	@Column
 	@NotBlank
-	private String day;
+	private String days;
 	
 	@Column
 	private Time startTime;
@@ -55,16 +55,16 @@ public class ModelSchedule implements Serializable
 
 	
 	
-	public ModelSchedule(Long teamid, @NotBlank String day) {
+	public ModelSchedule(Long teamid, @NotBlank String days) {
 		super();
 		this.teamid = teamid;
-		this.day = day;
+		this.days = days;
 	}
 
-	public ModelSchedule(Long teamid, @NotBlank String day, Time startTime, Time endTime, String description) {
+	public ModelSchedule(Long teamid, @NotBlank String days, Time startTime, Time endTime, String description) {
 		super();
 		this.teamid = teamid;
-		this.day = day;
+		this.days = days;
 		this.startTime = startTime;
 		this.endTime = endTime;
 		this.description = description;
@@ -78,12 +78,12 @@ public class ModelSchedule implements Serializable
 		this.teamid = teamid;
 	}
 
-	public String getDay() {
-		return day;
+	public String getDays() {
+		return days;
 	}
 
-	public void setDay(String day) {
-		this.day = day;
+	public void setDays(String day) {
+		this.days = day;
 	}
 
 	public Time getStartTime() {

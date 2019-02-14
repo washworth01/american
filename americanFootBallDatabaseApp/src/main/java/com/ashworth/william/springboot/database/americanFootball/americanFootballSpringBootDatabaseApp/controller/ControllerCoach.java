@@ -28,13 +28,13 @@ public class ControllerCoach
 	@Autowired
 	RepositoryCoach americanFootballRepository;
 	
-	@PostMapping("/user/coach")
+	@PostMapping("/coach")
 	public AmericanFootballSpringBootModelCoach createCoach(@Valid @ RequestBody AmericanFootballSpringBootModelCoach cSDM)
 	{
 		return americanFootballRepository.save(cSDM);
 	}
 	
-	@GetMapping("/user/coach")
+	@GetMapping("/coach")
 	public List<AmericanFootballSpringBootModelCoach> getAllCoach()
 	{
 		return americanFootballRepository.findAll();

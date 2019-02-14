@@ -29,6 +29,9 @@ import javax.validation.constraints.NotBlank;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 
 @Entity
@@ -48,7 +51,8 @@ public class AmericanFootballSpringBootModelTeamDetail
 	@ManyToMany(fetch =  FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	@JoinTable(name = "player_team", joinColumns = {@JoinColumn(name = "teamid")},
 		inverseJoinColumns = {@JoinColumn(name = "playerid")})
-	private List<AmericanFootballSpringBootModelPlayer> players = new ArrayList<>();
+	@JsonIgnore
+	private Collection<AmericanFootballSpringBootModelPlayer> players = new LinkedHashSet<>();
 		
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "coachid")
@@ -106,11 +110,11 @@ public class AmericanFootballSpringBootModelTeamDetail
 		this.teamName = teamName;
 	}
 	
-	public List<AmericanFootballSpringBootModelPlayer> getPlayers() {
+	public Collection<AmericanFootballSpringBootModelPlayer> getPlayers() {
 		return players;
 	}
 
-	public void setPlayers(List<AmericanFootballSpringBootModelPlayer> players) {
+	public void setPlayers(Collection<AmericanFootballSpringBootModelPlayer> players) {
 		this.players = players;
 	}
 
@@ -146,42 +150,6 @@ public class AmericanFootballSpringBootModelTeamDetail
 		this.description = description;
 	}
 
-//	public void addTag(AmericanFootballSpringBootModelPlayer player) {
-//		ModelTeamMember teamMember = new ModelTeamMember(this, player);
-//		players.add(teamMember);
-//		player.getTeams().add(teamMember);
-//    }
-// 
-//    public void removeTag(AmericanFootballSpringBootModelPlayer player) {
-//        for (Iterator<ModelTeamMember> iterator = players.iterator(); iterator.hasNext();)
-//        {
-//        	ModelTeamMember teamMember = iterator.next();
-// 
-//            if (teamMember.getTeam().equals(this) &&
-//            		teamMember.getPlayer().equals(player)) {
-//                iterator.remove();
-//                teamMember.getPlayer().getTeams().remove(teamMember);
-//                teamMember.setTeam(null);
-//                teamMember.setPlayer(null);
-//            }
-//        }
-//    }
-// 
-//    @Override
-//    public boolean equals(Object o) {
-//        if (this == o) return true;
-// 
-//        if (o == null || getClass() != o.getClass())
-//            return false;
-// 
-//        AmericanFootballSpringBootModelTeamDetail post = (AmericanFootballSpringBootModelTeamDetail) o;
-//        return Objects.equals(teamid, post.teamid);
-//    }
-// 
-//    @Override
-//    public int hashCode() {
-//        return Objects.hash(teamid);
-//    }
 }
 
 	

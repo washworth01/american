@@ -8,11 +8,11 @@
 		<version>2.1.1.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.ashworth.william.springboot.database.sakila</groupId>
-	<artifactId>garageSpringBootDatabaseApp</artifactId>
+	<groupId>com.ashworth.william.springboot.database.americanFootball</groupId>
+	<artifactId>americanFootballSpringBootDatabase</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
-	<name>garageSpringBootDatabaseApp</name>
+	<name>americanFootballSpringBootDatabaseApp</name>
 	<description>Demo project for Spring Boot</description>
 <properties>
 		<java.version>1.8</java.version>

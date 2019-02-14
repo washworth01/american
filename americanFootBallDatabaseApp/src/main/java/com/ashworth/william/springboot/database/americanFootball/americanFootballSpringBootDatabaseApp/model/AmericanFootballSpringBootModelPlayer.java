@@ -12,8 +12,10 @@ import javax.validation.constraints.NotBlank;
 
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "player")
@@ -36,8 +38,7 @@ public class AmericanFootballSpringBootModelPlayer implements Serializable
 	private String preferedPosition;
 	
 	@ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE}, mappedBy = "players")
-	@JsonIgnore
-	private List<AmericanFootballSpringBootModelTeamDetail> teams = new ArrayList<>();
+	private Collection<AmericanFootballSpringBootModelTeamDetail> teams = new LinkedHashSet<>();
 	
 	public AmericanFootballSpringBootModelPlayer()
 	{
@@ -91,11 +92,11 @@ public class AmericanFootballSpringBootModelPlayer implements Serializable
 		this.playerid = playerid;
 	}
 
-	public List<AmericanFootballSpringBootModelTeamDetail> getTeams() {
+	public Collection<AmericanFootballSpringBootModelTeamDetail> getTeams() {
 		return teams;
 	}
 
-	public void setTeams(List<AmericanFootballSpringBootModelTeamDetail> teams) {
+	public void setTeams(Collection<AmericanFootballSpringBootModelTeamDetail> teams) {
 		this.teams = teams;
 	}
 

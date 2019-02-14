@@ -28,13 +28,13 @@ public class ControllerPlayer
 	@Autowired
 	RepositoryPlayer americanFootballRepository;
 	
-	@PostMapping("/user/player")
+	@PostMapping("/player")
 	public AmericanFootballSpringBootModelPlayer createPlayer(@Valid @ RequestBody AmericanFootballSpringBootModelPlayer pSDM)
 	{
 		return americanFootballRepository.save(pSDM);
 	}
 	
-	@GetMapping("/user/player")
+	@GetMapping("/player")
 	public List<AmericanFootballSpringBootModelPlayer> getAllPlayers()
 	{
 		return americanFootballRepository.findAll();

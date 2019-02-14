@@ -24,7 +24,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Table(name = "coach")
 @EntityListeners(AuditingEntityListener.class)
 @JsonIgnoreProperties(value = {"creationDate", "lastModified"}, allowGetters = true)
-public class AmericanFootballSpringBootModelCoach
+public class AmericanFootballSpringBootModelCoach implements Serializable
 {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
