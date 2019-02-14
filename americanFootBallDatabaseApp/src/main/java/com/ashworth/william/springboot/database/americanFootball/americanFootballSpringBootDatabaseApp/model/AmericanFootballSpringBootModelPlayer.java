@@ -100,17 +100,4 @@ public class AmericanFootballSpringBootModelPlayer implements Serializable
 		this.teams = teams;
 	}
 
-//	@Override
-//    public boolean equals(Object o) {
-//        if (this == o) return true;
-//        if (o == null || getClass() != o.getClass()) return false;
-//        AmericanFootballSpringBootModelPlayer player = (AmericanFootballSpringBootModelPlayer) o;
-//        return Objects.equals(playerid, player.playerid);
-//    }
-// 
-//    @Override
-//    public int hashCode() {
-//        return Objects.hash(playerid);
-//    }
-
 }

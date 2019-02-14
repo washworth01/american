@@ -1,37 +1,39 @@
-let playerRequestURL = "http://192.168.1.107:8090/api/user/player"
+let playerRequestURL = "http://localhost:8090/api/player"
 let playerRequest = new XMLHttpRequest();
 playerRequest.open("GET", playerRequestURL);
 playerRequest.setRequestHeader('Content-type', 'application/json');
 playerRequest.setRequestHeader('Access-Control-Allow-Origin', '*');
-playerRequest.responseType = "json"
+playerRequest.responseType = "json";
 playerRequest.send();
 
-let playerJsonString = playerRequest.response;
+let userCoachrequestURL = "http://localhost:8090/api/coach"
+let userCoachRequest = new XMLHttpRequest();
+userCoachRequest.open("GET", userCoachrequestURL);
+userCoachRequest.setRequestHeader('Content-type', 'application/json');
+userCoachRequest.setRequestHeader('Access-Control-Allow-Origin', '*');
+userCoachRequest.responseType = "json";
+userCoachRequest.send();
 
-let coachRequestURL = "http://192.168.1.107:8090/api/user/coach"
-let coachRequest = new XMLHttpRequest();
-coachRequest.open("GET", coachRequestURL, true);
-coachRequest.setRequestHeader('Content-type', 'application/json');
-coachRequest.setRequestHeader('Access-Control-Allow-Origin', '*');
-coachRequest.responseType = "json"
-coachRequest.send()
+let coachJsonString = userCoachRequest.response;
 
-let coachJsonString = coachRequest.response;
-
-var userType = 1
-
+let userType = 1;
+let table = "";
 let pageText = "";
 let page = 1;
-let table = playerJsonString;
 let baseTable = "";
 
 playerRequest.onload = function() {
-   playerJsonString = playerRequest.response;
+   let playerJsonString = playerRequest.response;
    baseTable = playerJsonString;
    loadTable(baseTable);
 }
 
+userCoachRequest.onload = function() {
+    coachJsonString = userCoachRequest.response;
+}
+
 function loadTable(newTable){
+    console.log(userType)
     let counter = 0;
     let i = 0;
     table = newTable;
@@ -42,7 +44,7 @@ function loadTable(newTable){
         i = page*20;
     }
     console.log(userType)
-    if (userType === 1){
+    if (userType == 1){
         pageText = "";
         document.getElementById("searchTable").innerHTML = pageText;
         pageText = "<tr><td>Player Username</td><td>Prefered Role</td><td>Prefered Position</td><td>Description</td><td>Message</td>";
@@ -66,7 +68,7 @@ function loadTable(newTable){
             pageText += "<tr><td><button class='link' value='"+table[i].user.userid+"' onclick=seeUser(this.value)>" + table[i].user.username + "</button></td>"
             pageText += "<td>" + table[i].trainingSpecialisation + "</td>"
             pageText += "<td>" + table[i].user.description+ "</td>"
-            pageText += "<td><button id ='" +i+ "' value='"+table[i].user.userid+"' onclick=sendRequestToJoin(this.value)>message</td></tr>"
+            pageText += "<td><button id ='" +i+ "' value='"+table[i].user.userid+"' onclick=sendRequestToJoin(this.value)>remove</td></tr>"
             if(counter == 20){
                 break
             }
@@ -77,19 +79,20 @@ function loadTable(newTable){
 
 function changeUserType(user){
 
-    console.log(user);
-    
+    userType = user;
     if(user == 1){
-        jsonString = playerRequestURL;
+        jsonString = playerJsonString;
     }
     else{
-        jsonString = coachRequestURL;
+        jsonString = coachJsonString;
+        console.log(userType)
     }
 
     pageText = "";
     page = 1;
     baseTable = jsonString;
-
+    console.log(jsonString);
+    console.log(userType);
     loadTable(baseTable);
 }
 
@@ -102,7 +105,7 @@ function findByRole(testval){
     let dropdown=testval;
     pageText = "";
     table = baseTable;
-	let roletable = [];
+	let roleTable = [];
     let counter = 0;
     if (dropdown === "All"){
         loadTable(baseTable);
@@ -111,14 +114,14 @@ function findByRole(testval){
         for (i in table){
             console.log("Inside Loop");
             if (dropdown === table[i].preferedRole){
-                roletable[counter] = table[i];
+                roleTable[counter] = table[i];
                 counter++;
                 }
             }
         if (counter == 0){
             pageText = "Sorry! We couldn't find what you were looking for."
         }
-        loadTable(roletable);
+        loadTable(roleTable);
     }
 }
 
@@ -149,23 +152,29 @@ function seeUser(id){
     pageText = "";
     document.getElementById("searchTable").innerHTML = pageText;
     
-    let getAUserRequest = "http://192.168.1.107:8090/api/user/"+ id.toString();
+    let userRequestURL = "http://localhost:8090/api/user/"+id;
     let userRequest = new XMLHttpRequest();
-    userRequest.open("GET", getAUserRequest, true);
+    userRequest.open("GET", userRequestURL);
     userRequest.setRequestHeader('Content-type', 'application/json');
     userRequest.setRequestHeader('Access-Control-Allow-Origin', '*');
-    userRequest.responseType = "json"
-    userRequest.send()
+    userRequest.responseType = "json";
+    userRequest.send();
+    
+    let userJsonString = userRequest.response;
 
-    user = userRequest.response;
-
+    userRequest.onload = function() {
+        userJsonString = userRequest.response;
+    }
+    
+    pageText = userJsonString;
+    console.log(userJsonString);
     console.log(pageText)
 }
 
 function sendRequestToJoin(id){
     console.log("ID:" + id);
 
-    let sendMessageRequest = "http://192.168.1.107:8090/api/message"
+    let sendMessageRequest = "http://localhost:8090/api/message"
     let messageRequest = new XMLHttpRequest();
     messageRequest.open("POST", sendMessageRequest, true);
     messageRequest.setRequestHeader('Content-type', 'application/json');
