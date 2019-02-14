@@ -61,7 +61,7 @@ public class AmericanFootballSpringBootModelUser implements Serializable
 		
 	} 
 
-	public AmericanFootballSpringBootModelUser( String username, String password,
+	public AmericanFootballSpringBootModelUser(String username, String password,
 			 String emailAddress,  String firstName,  String lastName,
 			 String dateOfBirth, String description, AmericanFootballSpringBootModelContactDetails contactdetails) {
 		super();
@@ -75,7 +75,7 @@ public class AmericanFootballSpringBootModelUser implements Serializable
 		this.contactdetails = contactdetails;
 	}
 	
-	public AmericanFootballSpringBootModelUser( String username,  String password,
+	public AmericanFootballSpringBootModelUser(String username,  String password,
 			 String emailAddress,  String firstName,  String lastName,
 			 String dateOfBirth, AmericanFootballSpringBootModelContactDetails contactdetails) {
 		super();

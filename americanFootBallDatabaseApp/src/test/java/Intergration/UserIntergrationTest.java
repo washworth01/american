@@ -15,6 +15,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.apache.catalina.mapper.Mapper;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -48,75 +49,68 @@ public class UserIntergrationTest
 	
 	@Autowired
 	private RepositoryContactDetails contactRepository;
-
-	@Before
-	public void clearDB()
-	{
-		contactRepository.deleteAll();
-		userRepository.deleteAll();
-	}
 	
 	private ObjectMapper mapper = new ObjectMapper(); 
 	
-//	@Test
-//	public void findingAndRetriveingaAllUsersFromDatabase() throws Exception
-//	{		
-//		AmericanFootballSpringBootModelContactDetails contact1 = new AmericanFootballSpringBootModelContactDetails("NG27BZ", 24, "asda Road", "West Bridgford", "Nottingham",
-//				"Nottinghamshire", "07497610331"); 
-//		
-//		AmericanFootballSpringBootModelUser user1 = new AmericanFootballSpringBootModelUser("james", "12414", "asdasda@gmail.com", "James", "Jordan",
-//				"1997-02-02", "Short", contact1);
-//		
-//		contactRepository.save(contact1);
-//		userRepository.save(user1);
-//		mvc.perform(MockMvcRequestBuilders.get("/api/user")
-//			.contentType(MediaType.APPLICATION_JSON))
-//			.andExpect(status().isOk())
-//			.andExpect(content()
-//			.contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-//			.andExpect(jsonPath("$[0].username", is("james")));
-//	} 
-//
-//	@Test
-//	public void addAUserToDatabaseTest() throws Exception
-//	{
-//		AmericanFootballSpringBootModelContactDetails contact2 = new AmericanFootballSpringBootModelContactDetails("NG27BZ", 24, "Boundary Road", "West Bridgford", "Nottingham"
-//				, "Nottinghamshire", "07497610331");
-//		AmericanFootballSpringBootModelUser user2 = new AmericanFootballSpringBootModelUser("washworth", "12414", "washworth01@gmail.com", "William", "Ashworth",
-//				"1997-02-02" , "Short", contact2);
-//		
-//		contactRepository.save(contact2);
-//		userRepository.save(user2);
-//		mvc.perform(post("/api/user")
-//			.contentType(MediaType.APPLICATION_JSON)
-//			.content(mapper.writeValueAsString(user2)))
-//			.andExpect(status()
-//			.isOk())
-//			.andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-//			.andExpect(jsonPath("$.username", is("washworth")));
-//	}  
-//	
-//	@Test
-//	public void deleteAUserFromDatabaseTest() throws Exception
-//	{
-//		AmericanFootballSpringBootModelContactDetails contact3 = new AmericanFootballSpringBootModelContactDetails("NG27BZ", 24, "asda Road", "West Bridgford", "Nottingham",
-//				"Nottinghamshire", "07497610331"); 
-//		
-//		AmericanFootballSpringBootModelUser user3 = new AmericanFootballSpringBootModelUser("washworth01", "12414", "washworth01@gmail.com", "William", "Ashworth",
-//				"1997-02-02", "Short", contact3);
-//		
-//		contactRepository.save(contact3);
-//		userRepository.save(user3);
-//	
-//		mvc.perform(delete("/api/user/" + user3.getUserid())
-//			.contentType(MediaType.APPLICATION_JSON))
-//			.andExpect(status().isOk());
-//		
-//		mvc.perform(MockMvcRequestBuilders.get("/api/user/" + user3.getUserid())
-//			.contentType(MediaType.APPLICATION_JSON))
-//			.andExpect(status().isNotFound());
-//	}
+	@Test
+	public void findingAndRetriveingaAllUsersFromDatabase() throws Exception
+	{		
+		AmericanFootballSpringBootModelContactDetails contact1 = new AmericanFootballSpringBootModelContactDetails("NG27BZ", 24, "asda Road", "West Bridgford", "Nottingham",
+				"Nottinghamshire", "07497610331"); 
 		
+		AmericanFootballSpringBootModelUser user1 = new AmericanFootballSpringBootModelUser("james", "12414", "asdasda@gmail.com", "James", "Jordan",
+				"1997-02-02", "Short", contact1);
+		
+		contactRepository.save(contact1);
+		userRepository.save(user1);
+		mvc.perform(MockMvcRequestBuilders.get("/api/user")
+			.contentType(MediaType.APPLICATION_JSON))
+			.andExpect(status().isOk())
+			.andExpect(content()
+			.contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+			.andExpect(jsonPath("$[1].username", is("james")));
+	} 
+
+	@Test
+	public void addAUserToDatabaseTest() throws Exception
+	{
+		AmericanFootballSpringBootModelContactDetails contact2 = new AmericanFootballSpringBootModelContactDetails("NG27BZ", 24, "Boundary Road", "West Bridgford", "Nottingham"
+				, "Nottinghamshire", "07497610331");
+		AmericanFootballSpringBootModelUser user2 = new AmericanFootballSpringBootModelUser("washworth", "12414", "washworth01@gmail.com", "William", "Ashworth",
+				"1997-02-02" , "Short", contact2);
+		
+		contactRepository.save(contact2);
+		userRepository.save(user2);
+		mvc.perform(post("/api/user")
+			.contentType(MediaType.APPLICATION_JSON)
+			.content(mapper.writeValueAsString(user2)))
+			.andExpect(status()
+			.isOk())
+			.andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+			.andExpect(jsonPath("$.username", is("washworth")));
+	}  
+	
+	@Test
+	public void deleteAUserFromDatabaseTest() throws Exception
+	{
+		AmericanFootballSpringBootModelContactDetails contact3 = new AmericanFootballSpringBootModelContactDetails("NG27BZ", 24, "asda Road", "West Bridgford", "Nottingham",
+				"Nottinghamshire", "07497610331"); 
+		
+		AmericanFootballSpringBootModelUser user3 = new AmericanFootballSpringBootModelUser("washworth01", "12414", "washworth01@gmail.com", "William", "Ashworth",
+				"1997-02-02", "Short", contact3);
+		
+		contactRepository.save(contact3);
+		userRepository.save(user3);
+	
+		mvc.perform(delete("/api/user/" + user3.getUserid())
+			.contentType(MediaType.APPLICATION_JSON)) 
+			.andExpect(status().isOk());
+		
+		mvc.perform(MockMvcRequestBuilders.get("/api/user/" + user3.getUserid())
+			.contentType(MediaType.APPLICATION_JSON))
+			.andExpect(status().isNotFound());
+	}
+	
 	@Test
 	public void updateAUserFromDatabaseTest() throws Exception
 	{
