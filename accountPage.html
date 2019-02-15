@@ -8,10 +8,14 @@
     <body>
         <div class="navbar">
             <ul>
-                <li id="home"><a id="homeLink" href=#></a>Home</li>
-                <li id="search"><a id="searchLink" href=#></a>Search</li>
-                <li id="account"><a id="accountLink" href=#></a>Account</li>
-                <li id="login"><a id="loginLink" href=#></a>Login</li>
+                <li id="login"><a href="index.html">Home</a></li>
+                <li id="search"><a id="searchLink" href=searchpage.html>Search</a></li>
+                <li id="account"><a id="accountLink" href=accountPage.html>Account</a></li>
+                <li id="quickLogin">
+                    Username<input id="inputUsername" type="text"></input>
+                    Password<input id="inputPassword" type="password"></input>
+                    <input id="buttonLogin" value="Login" type=button onclick="loginUser()"></input>
+                </li>
             </ul>
         </div>
         <div class="page-header">
@@ -33,15 +37,15 @@
             <ul>
                 <li>
                     <h3>Offensive Team Members</h3>
-                    <table class="user-table" id="offence"></table>
+                    <table class="breakdown-table" id="offence"></table>
                 </li>
                 <li>
                     <h3>Defensive Team Members</h3>
-                    <table class="user-table" id="defence"></table>
+                    <table class="breakdown-table" id="defence"></table>
                 </li>
                 <li>
                     <h3>Special Team Members</h3>
-                    <table class="user-table" id="special"></table>
+                    <table class="breakdown-table" id="special"></table>
                 </li>
             </ul>
         </div>

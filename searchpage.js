@@ -14,9 +14,28 @@ userCoachRequest.setRequestHeader('Access-Control-Allow-Origin', '*');
 userCoachRequest.responseType = "json";
 userCoachRequest.send();
 
+let userRequestURL = "http://localhost:8090/api/user"
+let userRequest = new XMLHttpRequest();
+userRequest.open("GET", userRequestURL);
+userRequest.setRequestHeader('Content-type', 'application/json');
+userRequest.setRequestHeader('Access-Control-Allow-Origin', '*');
+userRequest.responseType = "json";
+userRequest.send();
+
+let userJsonString = userRequest.response;
+
+userRequest.onload = function() {
+    userJsonString = userRequest.response;
+ }
+
+
 let coachJsonString = userCoachRequest.response;
 
 let playerJsonString = playerRequest.response;
+
+let currentUserType = "coach";
+
+let currentUser = 1;
 
 let userType = 1;
 let table = "";
@@ -49,13 +68,18 @@ function loadTable(newTable){
     if (userType == 1){
         pageText = "";
         document.getElementById("searchTable").innerHTML = pageText;
-        pageText = "<tr><td>Player Username</td><td>Prefered Role</td><td>Prefered Position</td><td>Description</td><td>Message</td>";
+        pageText = "<tr><td>Player Username</td><td>Prefered Role</td><td>Prefered Position</td><td>Description</td>"
+        if(currentUserType == "coach"){
+            pageText += "<td>Message</td>";
+        }
         for (i in table){
-            pageText += "<tr><td><button class='link' value='"+table[i].user.userid+"' onclick=seeUser(this.value)>" + table[i].user.username + "</button></td>"
+            pageText += "<tr><td><button class='link' value='"+table[i].username+"' onclick=seeUser(this.value)>" + table[i].user.username + "</button></td>"
             pageText += "<td>" + table[i].preferedRole + "</td>"
             pageText += "<td>" + table[i].preferedPosition + "</td>"
             pageText += "<td>" + table[i].user.description+ "</td>"
-            pageText += "<td><button id ='" +i+ "' value='"+table[i].user.userid+"' onclick=sendRequestToJoin(this.value)>message</td></tr>"
+            if(currentUserType == "coach"){
+                pageText += "<td><button id ='" +i+ "' value='"+table[i].user.userid+"' onclick=sendRequestToJoin(this.value)>message</td></tr>"
+            }
             if(counter == 20){
                 break
             }
@@ -65,12 +89,17 @@ function loadTable(newTable){
     else{
         pageText = "";
         document.getElementById("searchTable").innerHTML = pageText;
-        pageText = "<tr><td>Coach Username</td><td>Training Specialisation</td><td>Description</td><td>Message</td>";
+        pageText = "<tr><td>Coach Username</td><td>Training Specialisation</td><td>Description</td>"
+        if(currentUserType == "player"){
+            pageText += "<td>Message</td>";
+        }
         for (i in table){
             pageText += "<tr><td><button class='link' value='"+table[i].user.userid+"' onclick=seeUser(this.value)>" + table[i].user.username + "</button></td>"
             pageText += "<td>" + table[i].trainingSpecialisation + "</td>"
             pageText += "<td>" + table[i].user.description+ "</td>"
+            if(currentUserType == "player"){
             pageText += "<td><button id ='" +i+ "' value='"+table[i].user.userid+"' onclick=sendRequestToJoin(this.value)>message</td></tr>"
+            }
             if(counter == 20){
                 break
             }
@@ -109,7 +138,7 @@ function searchRequest(){
 	let searchTable = [];
     let counter = 0;
     for (i in table){
-        if (table[i].username === input){
+        if (table[i].username.includes(input)){
 			searchTable[counter] = table[i];
 			counter++;
 			}
@@ -221,17 +250,65 @@ function sendRequestToJoin(id){
     messageRequest.setRequestHeader('Access-Control-Allow-Origin', '*');
     messageRequest.responseType = "json"
 
-    let json = JSON.stringify({
-        "userid": {
-        	"userid": 1
-        },
-        "userid1": {
-        	"userid": id
-        },
-        "message": "Hi there"
- })
+    let arrayPosition = currentUser*1-1;
+    if(currentUserType = "player")
+    {
+        let json = JSON.stringify({
+            "userid": {
+                "userid": currentUser
+            },
+            "userid1": {
+                "userid": id
+            },
+            "message": userJsonString[arrayPosition].username + " would like to join your team"
+        })
+        console.log(json);
+
+         messageRequest.send(json);
+    }
+    else{
+        let json = JSON.stringify({
+            "userid": {
+                "userid": currentUser
+            },
+            "userid1": {
+                "userid": id
+            },
+            "message": userJsonString[arrayPosition-1].username + " would like you to join their team"
+        })
+    }
 
     console.log(json);
 
     messageRequest.send(json);
+}
+
+function login(){
+
+    let username = document.getElementById("inputUsername").value;
+    let password = document.getElementById("inputPassword").value;
+    console.log(username)
+    console.log(userJsonString[0].username)
+    for(i in userJsonString){
+        if(username.includes(userJsonString[i].username)
+        && password.includes(userJsonString[i].password)){
+            alert("Login successful")
+            currentUser = userJsonString[i].userid;
+            console.log(currentUserType)
+        }
+    }
+    for(i in coachJsonString){
+        console.log(currentUser)
+        console.log(coachJsonString[i].user.userid)
+        let coachId = coachJsonString[i].user.userid;
+        if(currentUser == coachId){
+            currentUserType = "coach";
+            console.log(currentUserType)
+            break;
+        }
+        else{
+            currentUserType = "player";
+        }
+        console.log(currentUserType)
+    }
 }

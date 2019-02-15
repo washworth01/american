@@ -13,12 +13,14 @@
     <body>
         <div class="navbar">
             <ul>
-                <li id="home">
-                    <a href="index.html">Home</a>
-                </li>
+                <li id="home"><a href="index.html">Home</a></li>
                 <li id="search"><a id="searchLink" href=searchpage.html>Search</a></li>
                 <li id="account"><a id="accountLink" href=accountPage.html>Account</a></li>
-                <li id="login"><a id="loginLink" href=#></a>Login</li>
+                <li id="quickLogin">
+                    Username<input id="inputUsername" type="text"></input>
+                    Password<input id="inputPassword" type="password"></input>
+                    <input id="buttonLogin" value="Login" type=button onclick="login()"></input>
+                </li>
             </ul>
         </div>
         <div class="page-header">
@@ -35,13 +37,6 @@
                         </select>
                         <input id="changeUser" type="button" value="Change User Type" onClick="changeUserType(document.getElementById('userDropDown').value);">
                     </li>
-            </ul>
-        </div>
-        <div class="search-functions">
-            <ul>
-                <li id="searchBar"><input id="searchRequest" type=text onchange="searchRequest();"></input></li>
-                <li id="searchButton"><button id="searchSend"  onclick="searchRequest();">Search</button></li>
-                <li id="changeFilter">
             </ul>
         </div>
         <div class="search-filters">

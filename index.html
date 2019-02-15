@@ -1,0 +1,38 @@
+<html>
+    <head>
+        <title>Login</title>
+
+        <link href="project.css" rel="stylesheet">
+    </head>
+
+    <body>
+        <div class="navbar">
+            <ul>
+                <li id="home"><a href="index.html">Home</a></li>
+                <li id="search"><a id="searchLink" href=searchpage.html>Search</a></li>
+                <li id="account"><a id="accountLink" href=accountPage.html>Account</a></li>
+                <li id="quickLogin">
+                    Username<input id="inputUsername" type="text"></input>
+                    Password<input id="inputPassword" type="password"></input>
+                    <input id="buttonLogin" value="Login" type=button></input>
+                </li>
+            </ul>
+        </div>
+        <div class="page-header">
+            <h1>Login/Create Account</h1>
+        </div>
+        <div class="page-form">
+            <form>
+                <ul id="fields">
+
+                </ul>
+                <ul id="userSpecific">
+
+                </ul>
+            </form>
+                <button id = "loginForm" onclick="loginSetup();return false">Login Form</button>
+                <button id = "createAccountForm" onclick="createAccountSetup();return false">Create Account Form</button>
+        </div>
+        <script src=loginpage.js></script>
+    </body>
+</html>

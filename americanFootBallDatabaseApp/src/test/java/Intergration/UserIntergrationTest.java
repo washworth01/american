@@ -68,14 +68,6 @@ public class UserIntergrationTest
 				coachRepository.deleteAll();
 	}
 	
-	@After
-	public void teardown()
-	{
-		//userRepository.deleteAll();
-		//contactRepository.deleteAll();
-		//playerRepository.deleteAll();
-		//coachRepository.deleteAll();
-	}
 	
 	private ObjectMapper mapper = new ObjectMapper(); 
 	

@@ -41,6 +41,7 @@ let userType = "";
  function loginSetup(){
     form =  "<h2>Username<input id='usernameLogin' class='inputBox' type=text></h2>"
     form += "<h2>Password<input id='passwordLogin' class='inputBox' type=text></h2>"
+    form += "<button id='loginButton' type=button onclick=login();>Submit</button>"
     formUser = "";
     createForm();
  }
@@ -85,11 +86,16 @@ function createPlayer(){
 
 function finaliseAndCreateUser(){
     let i =0;
-
+    if(document.getElementById("username").value === "" || document.getElementById("password").value === "" || document.getElementById("email").value === "" 
+    || document.getElementById("firstName").value === ""  || document.getElementById("lastName").value === ""  || document.getElementById("dob").value === "" 
+    || document.getElementById("houseNumber").value === ""  || document.getElementById("addressLine1").value === ""  || document.getElementById("city").value === "" 
+    || document.getElementById("county").value === ""  || document.getElementById("postcode").value === ""  || document.getElementById("phone").value === "" ){
+        return alert("Form not completed")
+    }
     newUsername = document.getElementById("username").value;
     for (i in userJsonString){
         if(newUsername.includes(userJsonString[i].username)){
-            alert("That username is already taken, please enter a new one"); break;
+            return alert("That username is already taken, please enter a new one");
         }
     }
 
@@ -128,8 +134,10 @@ function finaliseAndCreateUser(){
                 
                 contactPostRequest.send(newContact);
                 
+
                 arrayLength = contactJsonString.length;
-                contactId = contactJsonString[arrayLength-1].contactDetailsId;
+                
+                contactId = arrayLength+1;
                 break;
         }
     }
@@ -140,7 +148,7 @@ function finaliseAndCreateUser(){
     userPostRequest.setRequestHeader('Content-type', 'application/json');
     userPostRequest.setRequestHeader('Access-Control-Allow-Origin', '*');
     userPostRequest.responseType = "json";
-           
+
     newUser = JSON.stringify({
         "username":document.getElementById("username").value,
         "password": document.getElementById("password").value,
@@ -154,12 +162,12 @@ function finaliseAndCreateUser(){
         }
     })
 
+    userPostRequest.send(newUser);
+
     arrayLength = userJsonString.length;
 
     let userId = "";
-    userId = contactJsonString[arrayLength].contactDetailsId;
-
-    userPostRequest.send(newUser);
+    userId = arrayLength+1;
 
     console.log(userId)
     console.log(contactId)
@@ -201,5 +209,17 @@ function finaliseAndCreateUser(){
         })
 
         playerRequest.send(newPlayer);
+    }
+}
+
+function login(){
+    let username = document.getElementById("usernameLogin").value;
+    let password = document.getElementById("passwordLogin").value;
+    console.loh
+    for(i in userJsonString){
+        if(username.includes(userJsonString[i].username)
+        && password.includes(userJsonString[i].password)){
+            alert("Login successful")
+        }
     }
 }

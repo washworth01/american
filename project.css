@@ -92,7 +92,7 @@ body {
 
 .navbar {
   color: white;
-  padding:1;
+  padding:1px;
 }
 
 .navbar ul {
@@ -104,8 +104,18 @@ body {
 }
 
 .navbar li {
-    display: inline;
+    float: left;
   }
+
+.navbar #quickLogin {
+    float: right;
+    text-align: center;
+
+}
+
+.navbar #quickLogin:hover {
+    background-color: #15161a
+}
 
 .inputBox {
     float:right;
@@ -118,6 +128,14 @@ body {
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
+}
+
+.navbar li a {
+    display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
 }
 
 .vertical-navbar li {
@@ -187,8 +205,8 @@ body {
 }
 
 .navbar li:hover {
-    background-color: white;
-    color: #15161a;
+    background-color: #EEDA22;
+    color: white;
 }
 
 .search-functions{
@@ -240,8 +258,10 @@ body {
 
 .user-table{
     z-index: -1;
-    overflow: visible;
-    width: 100%;
+    overflow: -moz-hidden-unscrollable;
+    margin-left: 256px;
+    margin-right: 1px;
+    width: 85%;
 }
 
 .user-table table {
@@ -270,12 +290,32 @@ body {
     background-color: white;
 }
 
-.seperate-table {
+.breakdown-table {
     border-collapse: collapse;
     width:100%;
     overflow:hidden;
     float:right;
 }
+
+.breakdown-table th {
+    text-align: center;
+    padding: 15px;
+}
+
+.breakdown-table td {
+    text-align: center;
+    padding: 15px;
+}
+
+.breakdown-table tr:nth-child(odd) {
+    background-color: #15161a;
+    color: white;
+}
+
+.breakdown-table tr:nth-child(even) {
+    background-color: white;
+}
+
 
 .team-details li{
     background-color: #EEDA22;
@@ -292,7 +332,7 @@ body {
 }
 
 .change-search {
-    background-color: #15161a;
+    background-color: #EEDA22;
     padding: 1px;
     color: white;
     float: middle;
@@ -301,8 +341,4 @@ body {
 
 .change-search ul {
     list-style-type: none;
-}
-
-.bg-dark {
-    background-color: #15161a !important;
 }
