@@ -29,9 +29,7 @@ public class ModelTeamMember implements Serializable
 	@EmbeddedId
 	private AmericanFootballSpringBootModelTeamMemberKey id;
 	
-	@NotBlank
-	@Column
-	private int playerNumber;
+	private Integer playerNumber;
 	
 	public ModelTeamMember()
 	{
@@ -43,7 +41,7 @@ public class ModelTeamMember implements Serializable
 		this.id = id;
 	}
 	
-	public ModelTeamMember(AmericanFootballSpringBootModelTeamMemberKey id, int playerNumber)
+	public ModelTeamMember(AmericanFootballSpringBootModelTeamMemberKey id, Integer playerNumber)
 	{
 		this.id = id;
 		this.playerNumber = playerNumber;
@@ -61,7 +59,7 @@ public class ModelTeamMember implements Serializable
 		return playerNumber;
 	}
 
-	public void setPlayerNumber(int playerNumber) {
+	public void setPlayerNumber(Integer playerNumber) {
 		this.playerNumber = playerNumber;
 	}
 }

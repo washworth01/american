@@ -6,6 +6,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.StreamingHttpOutputMessage.Body;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,9 +15,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ashworth.william.springboot.database.americanFootball.americanFootballSpringBootDatabaseApp.exception.ResourceNotFoundException;
+import com.ashworth.william.springboot.database.americanFootball.americanFootballSpringBootDatabaseApp.model.AmericanFootballSpringBootModelTeamMemberKey;
 import com.ashworth.william.springboot.database.americanFootball.americanFootballSpringBootDatabaseApp.model.ModelTeamMember;
 import com.ashworth.william.springboot.database.americanFootball.americanFootballSpringBootDatabaseApp.repository.RepositoryTeamMember;
 
@@ -82,6 +85,7 @@ public class ControllerTeamMember
 //		ModelTeamMember tMSDM = americanFootballRepository.findByTeamAndPlayer(teamName, player);
 //		
 //		americanFootballRepository.delete(tMSDM);
-//		return ResponseEntity.ok().build();
+//		returnResponseEntity.ok().build();
 //	}
+	
 }
